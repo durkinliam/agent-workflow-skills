@@ -1,0 +1,4 @@
+interface:
+  display_name: "Hard Cut"
+  short_description: "Enforce an explicitly approved hard cut"
+  default_prompt: "Use $hard-cut to enforce this approved hard cut without preserving speculative compatibility."

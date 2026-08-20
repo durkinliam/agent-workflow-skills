@@ -1,0 +1,4 @@
+interface:
+  display_name: "Project Discovery"
+  short_description: "Turn a greenfield idea into an evidence frontier"
+  default_prompt: "Use $project-discovery to turn this incomplete greenfield idea into a bounded destination, evidence plan, and first observable outcome."

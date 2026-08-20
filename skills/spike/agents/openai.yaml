@@ -1,0 +1,4 @@
+interface:
+  display_name: "Bounded Spike"
+  short_description: "Answer one uncertainty with bounded evidence"
+  default_prompt: "Use $spike to answer this single uncertainty with bounded research, an experiment, or a prototype and route the evidence back to its parent stage."

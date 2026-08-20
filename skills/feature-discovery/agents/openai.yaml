@@ -1,0 +1,4 @@
+interface:
+  display_name: "Feature Research"
+  short_description: "Establish objective evidence for feature design"
+  default_prompt: "Use $feature-discovery to inspect this existing system and produce objective, solution-neutral evidence for the next safe design step."

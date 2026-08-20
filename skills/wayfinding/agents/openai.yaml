@@ -1,0 +1,4 @@
+interface:
+  display_name: "Wayfinding"
+  short_description: "Map decisions through large uncertain work"
+  default_prompt: "Use $wayfinding to map this large uncertain effort into a destination, decision frontier, and bounded evidence tasks."

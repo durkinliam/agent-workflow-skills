@@ -1,0 +1,4 @@
+interface:
+  display_name: "Solution Design"
+  short_description: "Design the next safe vertical frontier"
+  default_prompt: "Use $solution-design to turn this intent and evidence into a reviewable current design while keeping later decisions explicit."

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Vertical Delivery"
+  short_description: "Deliver one verified vertical behaviour"
+  default_prompt: "Use $vertical-delivery to implement and verify exactly one Ready vertical issue in a focused context."

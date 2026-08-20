@@ -1,0 +1,4 @@
+interface:
+  display_name: "Problem Discovery"
+  short_description: "Find the real problem behind reported symptoms"
+  default_prompt: "Use $problem-discovery to investigate this ambiguous issue report and return evidence-backed problem theses and discriminating next steps."

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Test Ownership"
+  short_description: "Assign each invariant to its owning test suite"
+  default_prompt: "Use $test-ownership to choose the canonical test layer and suite for this behavioural invariant."

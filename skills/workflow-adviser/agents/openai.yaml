@@ -1,0 +1,4 @@
+interface:
+  display_name: "Workflow Adviser"
+  short_description: "Choose the cheapest safe workflow entry point"
+  default_prompt: "Use $workflow-adviser to classify this request and recommend exactly one starting route without performing the work."

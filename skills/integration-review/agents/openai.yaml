@@ -1,0 +1,4 @@
+interface:
+  display_name: "Integration Review"
+  short_description: "Independently review cross-slice feature coherence"
+  default_prompt: "Use $integration-review in a fresh read-only context to review these verified slices as one coherent feature."
