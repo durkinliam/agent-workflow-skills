@@ -13,7 +13,12 @@ Use the request and already-loaded skill descriptions. Do not inspect the reposi
 
 Test routes in this order:
 
-1. **direct** — one small, obvious, low-consequence outcome; relevant location and current behaviour are known; no material design uncertainty; a proportionate oracle is apparent. Do not use for changes whose security, data, compatibility, operational, or cross-boundary risk warrants issue state and independent review.
+1. **direct** — one small, obvious, low-consequence outcome; relevant location
+   and current behaviour can be established cheaply; the change can be bounded,
+   reversible, and convention-following; no material design uncertainty exists;
+   and one focused oracle is apparent. Do not use for
+   material API, schema, data, migration, authorization, money, concurrency,
+   deployment, compatibility, operational, or cross-boundary risk.
 2. **`$vertical-delivery`** — one Ready issue already supplies outcome, scope, decisions, acceptance criteria, dependencies, non-goals, and oracle.
 3. **`$spike`** — one precise evidence, experiment, or prototype question blocks progress.
 4. **`$context-handoff`** — related work must move to a fresh context, owner, harness, repository, or worktree.
@@ -28,6 +33,11 @@ Test routes in this order:
 13. **user** — one product or irreversible decision is required even to choose an honest route.
 
 Do not recommend `$wayfinding` merely because the eventual system is large. Do not recommend a lifecycle skill when direct work is already safe, but do not use `direct` to bypass a supplied Ready issue or proportionate controls for material work. If a user explicitly names a suitable skill, skip this adviser and use it.
+
+Recommending `direct` does not authorize production editing. If the execution
+contract is not yet approved, the `Next prompt` must authorize only the minimum
+investigation needed to present that contract, then stop for user approval. If
+the prompt already contains approval, the launcher may proceed through delivery.
 
 ## Return only advice
 

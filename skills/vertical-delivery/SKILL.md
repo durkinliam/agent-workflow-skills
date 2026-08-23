@@ -17,7 +17,11 @@ Before editing, confirm:
 - linked dependencies are Verified or Done, or the issue records an explicit evidence-backed alternative;
 - explicit scope and non-goals;
 - observable acceptance criteria;
-- a viable verification oracle.
+- a viable verification oracle;
+- an approved verification budget naming one seam, the expected test delta, and
+  the trigger for broader checks; and
+- user authorization of this issue or a parent destination whose agreed boundary
+  still covers it.
 
 Treat requests, backlog entries, and conversational handoffs as candidate input,
 not readiness authority. If the durable issue is absent, stale, Draft, or
@@ -42,7 +46,8 @@ For a substantial issue, start from the issue and linked authoritative artifacts
    - spike-then-test when the contract is unknown;
    - implementation-then-test when rapid feedback must establish the shape first;
    - manual or visual verification when automation is not yet proportionate.
-5. When tests will change, state the behavioural invariant and oracle, then use
+5. Treat the approved verification budget as authoritative. A zero test delta is
+   valid when an existing oracle is sufficient. When tests will change, state the behavioural invariant and oracle, then use
    `$test-ownership` before editing tests to select the owning layer and
    canonical suite.
 6. When the Ready issue declares `Change/evolution policy: hard-cut`, compose
@@ -57,11 +62,19 @@ For a substantial issue, start from the issue and linked authoritative artifacts
 3. Run the focused oracle immediately.
 4. Fix failures caused by the slice without broadening its outcome.
 5. Exercise the public feedback point when it is distinct from the automated test oracle.
-6. Run proportionate broader checks and inspect the complete diff.
+6. Run broader checks only when the approved trigger or observed risk warrants
+   them, then inspect the complete diff.
 7. Compare observed results with every provisional decision exercised by the slice. Mark it **Validated by evidence**, **Invalidated**, or still **Provisional for slice**, cite the evidence, and record the planning consequence. Keep unrelated later decisions **Not yet specified**.
 8. Review critical code and tests for design conformance, readability, unnecessary coupling, duplication, and unexpected cross-boundary changes. A passing oracle does not excuse an unmaintainable or surprising implementation.
 9. Surface material implementation trade-offs or design deviations for human or peer review when task risk warrants it.
 10. Summarize successful checks compactly; retain full output only for failures or evidence that materially affects the next decision.
+
+Do not ask the user about ordinary investigation, reversible implementation
+choices, failing checks, or adjacent discoveries. Continue autonomously within
+the approved contract. Return to the user only when permission, credentials,
+external evidence, or authority are missing; an unapproved material decision or
+destructive/operational action is required; or evidence invalidates the agreed
+outcome, scope, contract, change budget, or oracle.
 
 When delegated execution reveals material judgment, risk, misclassification,
 or a wider blast radius than the Ready issue established, stop that execution

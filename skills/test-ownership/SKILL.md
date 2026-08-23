@@ -8,6 +8,8 @@ description: Assign a behavioural invariant to the lowest sufficient test layer 
 Give each behavioural invariant one clear primary owner before adding or
 consolidating coverage. Compose this policy with the current Ready issue,
 `$vertical-delivery`, and `$code-review`; do not create another lifecycle stage.
+Do not invoke this policy when the approved expected test delta is zero. Tests
+are evidence, not an automatic deliverable for every code change.
 
 ## Establish ownership before editing
 
@@ -22,6 +24,9 @@ After the issue's invariant and oracle are explicit, but before changing tests:
    - end-to-end when only user-visible wiring proves the behaviour.
 5. Prefer the existing canonical suite for that owner over a new ticket-shaped
    file or parallel fixture hierarchy.
+6. Keep the change inside the approved test delta. If proving the invariant
+   requires another seam or broader coverage, invalidate the verification budget
+   and replan instead of adding tests opportunistically.
 
 Name tests for the behaviour they protect, not an incident or issue number.
 Repository architecture and conventions override the generic layer heuristic.

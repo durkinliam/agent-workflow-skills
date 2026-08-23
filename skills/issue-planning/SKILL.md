@@ -13,7 +13,7 @@ Turn an approved design or simple plan into executable work without losing scope
 2. If a material product, system, or program-shape decision required by the next candidate issue remains unresolved, route that decision to `$solution-design` or `$spike`. Do not block the frontier on decisions needed only by later behaviours, and do not require a separate design for a small, obvious change.
 3. Identify the walking skeleton or smallest end-to-end behaviour first.
 4. Slice subsequent work by observable behaviour or risk, not by technical layer.
-5. Preserve agreed contracts and program-design decisions in the affected issue context without copying the whole design.
+5. Preserve agreed contracts and program-design decisions in the affected issue context without copying the whole design. Record the authorization source separately from technical readiness; an approved parent destination may authorize later slices that remain inside its agreed boundary.
 6. Order dependencies and identify work that is genuinely independent.
 7. Record later behaviours or decisions as **Not yet specified** with the issue or milestone at which they must be resolved.
 8. Route unresolved evidence questions to `$spike` and mark only affected issues **Blocked**.
@@ -37,7 +37,8 @@ Use the repository's established format or the durable
 parent plan and evidence, preserve the relevant design constraints, and define
 one outcome, bounded scope and non-goals, acceptance criteria, dependencies,
 replanning triggers, and a verification strategy. The strategy must name the
-oracle, delivery mode, public feedback point when distinct, critical
+owning seam, expected test delta, focused oracle, trigger for broader checks,
+delivery mode, public feedback point when distinct, critical
 design-conformance checks, and why the evidence is sufficient. Chat and a
 remote tracker item are not substitutes for this current local record.
 
@@ -52,6 +53,8 @@ Mark **Ready** only when:
 - expected scope is bounded but may span multiple technical layers;
 - one agent can complete it without rediscovering feature architecture;
 - at least one reliable oracle exists;
+- the verification budget names one owning seam, the expected test delta, and
+  when broader checks become necessary;
 - non-goals prevent silent expansion.
 - any provisional design point exercised by the issue has explicit validating
   and invalidating evidence plus a bounded planning consequence.
@@ -65,6 +68,11 @@ Use **Intake → Discovering → Planned → Draft → Ready → In Progress →
 directly from Planned, Draft, or Blocked to In Progress. A material change to
 the outcome, scope, dependencies, acceptance criteria, or oracle invalidates
 the Ready gate; return the issue to Draft or Blocked and review it again.
+
+Readiness does not grant production authority. Record whether the user approved
+this issue or a parent destination whose outcome, boundaries, verification
+budget, and stop conditions cover it. Leave an unauthorized issue Ready; do not
+move it to In Progress.
 
 ## Artifact and external actions
 

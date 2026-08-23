@@ -10,6 +10,7 @@ announce its state.
 - Status: `Intake | Discovering | Planned | Draft | Blocked | Ready | In Progress | Verified | Done`
 - Parent plan: [<plan title>](../README.md)
 - Dependencies: <none or stable IDs with direct links>
+- Authorization: <approved issue or parent destination reference, or pending>
 
 ## Outcome
 <One observable user, system, or operational behaviour.>
@@ -32,7 +33,10 @@ announce its state.
 - [ ] <failure or edge condition when relevant>
 
 ## Verification strategy
+- Verification seam: <one canonical interface or observation boundary>
+- Expected test delta: <none | modify existing | add one canonical test>
 - Oracle: <exact command, test, observation, log/event, or visual check>
+- Broader checks only if: <risk or evidence trigger; never merely because code changed>
 - Mode: <test-first | spike-then-test | implementation-then-test | manual/visual>
 - Public feedback point: <external behaviour to exercise, or same as oracle>
 - Design-conformance check: <critical constraint to inspect, or none>
@@ -47,6 +51,7 @@ announce its state.
 ## Gate record
 - Readiness reviewed by: <agent/person and timestamp>
 - Gate result: <Ready | not Ready>
+- Authorization source: <approved issue/parent reference or pending>
 - Missing/blocked items: <none or exact list>
 
 ## Delivery log
@@ -67,7 +72,9 @@ evidence, scope, dependencies, acceptance criteria, oracle, ownership, and
 replanning triggers is explicit and current. If one is absent, conflicting, stale,
 or unverifiable, use `Draft` or `Blocked`.
 
-Move only one Ready issue to `In Progress` per agent/task. A material change to
+Readiness and authorization are separate. Move only one Ready issue to `In
+Progress` per agent/task, and only after the user has approved that issue or a
+parent destination whose boundaries and stop conditions still cover it. A material change to
 outcome, scope, dependencies, acceptance criteria, or oracle invalidates the gate:
 return the issue to `Draft` (or `Blocked`) and obtain a new review. Mark `Verified`
 only after the stated oracle passes and the complete diff has been inspected.
