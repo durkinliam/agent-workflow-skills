@@ -19,7 +19,7 @@ Before editing, confirm:
 - observable acceptance criteria;
 - a viable verification oracle;
 - an approved verification budget naming one seam, the expected test delta, and
-  the trigger for broader checks; and
+  the trigger for broader checks;
 - user authorization of this issue or a parent destination whose agreed boundary
   still covers it; and
 - a change-to-criterion map covering every expected production, test,
