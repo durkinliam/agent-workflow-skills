@@ -31,8 +31,8 @@ If these cannot be stated, return the work to its parent stage rather than begin
 ## Record the result
 
 Update the authoritative parent artifact and every directly affected standalone
-issue when they exist. When project writes are in scope and no convention
-exists, record durable evidence under the active parent plan's
+issue when they exist. When lifecycle-artifact writes are explicitly authorized
+for the current branch and no convention exists, record durable evidence under the active parent plan's
 `evidence/<question>.md`, link it from its decision, design, or issue, and update
 the affected issue state and lifecycle history plus the frontier and next action
 in `docs/agent/index.md`. Record:
@@ -43,6 +43,10 @@ in `docs/agent/index.md`. Record:
 - decision enabled;
 - remaining uncertainty;
 - recommended next action.
+
+Product or implementation write authority does not authorize these artifacts.
+Without explicit branch-level lifecycle-artifact authority, return the result
+inline or update only a separately authorized planning location.
 
 Do not silently promote spike code into production. Recommend deletion, retention as a fixture/example, or deliberate rewriting.
 
@@ -56,4 +60,4 @@ Return control after this skill's bounded responsibility ends. Set **Control** t
 
 End with: **Stage result** (`Spike resolved`, `Spike inconclusive`, or `Spike blocked`); **Destination status** (`In Progress`, `Paused`, or `Complete`); **Control** (`driver`, `user`, or `none`); **To** (one skill, `direct`, `scheduled`, `user`, or `none`); **Artifact** (local path or inline result); **Evidence**; **Blocking item** (one precise prerequisite and owner, or `none`); and exactly one **Next action** (or `none` only when the destination is complete). Reserve destination `Complete` for a passed terminal audit.
 
-Then add **Continuation artifact** (path, `inline`, or `none`) and **Next prompt**. Keep `Next action` terse. For a skill, `direct`, or `scheduled` route, provide a compact launcher naming the authorized destination, repository, authoritative artifact, and stop conditions; the active plan driver consumes it without user intervention when executable, or at the recorded wake-up when scheduled. For `user`, provide one precise decision or evidence request. For `none`, write `Next prompt: none`. When project writes are already in scope, persist the launcher at the parent plan's `handoffs/next.md`, link it from `docs/agent/index.md`, and supersede any stale launcher; otherwise keep it inline. Keep it under 1,500 characters and link authoritative artifacts rather than replaying them.
+Then add **Continuation artifact** (path, `inline`, or `none`) and **Next prompt**. Keep `Next action` terse. For a skill, `direct`, or `scheduled` route, provide a compact launcher naming the authorized destination, repository, authoritative artifact, and stop conditions; the active plan driver consumes it without user intervention when executable, or at the recorded wake-up when scheduled. For `user`, provide one precise decision or evidence request. For `none`, write `Next prompt: none`. Persist the launcher at the parent plan's `handoffs/next.md` and link it from `docs/agent/index.md` only when lifecycle-artifact writes are explicitly authorized for the current branch; otherwise keep it inline or use the separately authorized planning location. Keep it under 1,500 characters and link authoritative artifacts rather than replaying them.

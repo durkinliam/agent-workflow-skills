@@ -44,18 +44,42 @@ reconstructing requirements from implementation alone.
 8. **Operations:** Are configuration, secrets, logging, metrics, rollout, rollback, and runbook needs addressed when relevant?
 9. **Scope:** Did delivery introduce unrelated refactoring, speculative infrastructure, or deferred behaviour accidentally?
 
+Review compatibility, migrations, retries, idempotency, recovery, data
+consistency, observability, rollout, rollback, and other operational or
+historical-data concerns only when a named acceptance criterion or explicit
+approved constraint requires them. Do not infer them from general completeness,
+preservation, symmetry, or future-proofing.
+
 ## Findings
 
-Prioritize concrete findings with file, symbol, issue, command, or evidence references. Classify each as:
+Before classifying an observation as a Blocker, require all three:
+
+1. the named acceptance criterion or explicit approved correctness/safety
+   constraint it protects;
+2. evidence of an observable failure or a concrete executable failure path in
+   the approved behaviour; and
+3. the smallest correction inside the approved boundary.
+
+If the first or second item is missing, reject the observation or classify it as
+a non-blocking Follow-up. If both are satisfied but the smallest correction
+crosses the approved boundary, classify it as a Boundary blocker: it blocks
+readiness and routes to the user as a separate scope decision without amending
+the Ready issue. Prioritize concrete findings with file, symbol, issue, command,
+or evidence references. Classify each as:
 
 - **Blocker:** required before the feature can be considered complete;
+- **Boundary blocker:** demonstrated incorrectness or unsafety whose smallest
+  correction crosses the approved boundary;
 - **Follow-up:** valuable but outside the agreed completion boundary;
 - **Accepted risk:** explicitly understood and tolerable;
 - **No finding:** do not invent work to fill a category.
 
-Do not recommend broad cleanup without a demonstrated failure or maintenance risk tied to the feature.
+Do not recommend broad cleanup without a demonstrated failure tied to the
+approved feature behaviour. Existing consistency or a general maintenance risk
+alone is not finding authority. Never promote an explicit non-goal into a
+finding for symmetry, preservation, completeness, or future-proofing.
 
-When review-artifact writes are in scope and no repository convention exists,
+When review-artifact writes are explicitly authorized for the current branch and no repository convention exists,
 have the plan driver store the returned result under the active parent plan's
 `reviews/integration.md`, link it from the parent design and local issue set,
 and update only disposition, frontier, and next action in
@@ -71,10 +95,12 @@ Run proportionate end-to-end checks when authorized and available. Summarize suc
 
 After the review context ends, have the plan driver update the review artifact,
 parent-plan index, affected issue lifecycle records, and link-only workflow
-index when those writes are in scope. Route invalid or
-missing design decisions to `$solution-design`, issue-boundary blockers to
-`$issue-planning`, one-question evidence gaps to `$spike`, and a newly Ready fix
-to `$vertical-delivery`.
+index only when lifecycle-artifact writes are explicitly authorized for the
+current branch. Route only already-authorized in-scope fixes to
+`$vertical-delivery`; route a Boundary blocker to the user as a separate scope
+decision. Never amend a Ready issue or route a Follow-up directly to
+planning, design, delivery, or a spike. Boundary expansions, new criteria, and
+inferred requirements route to the user as separate decisions.
 
 Any subsequent implementation change invalidates **Ready** or **Ready with
 accepted risks**. Establish the new integrated review surface and obtain a
@@ -86,4 +112,4 @@ Return control after this independent review responsibility ends. Set **Control*
 
 End with: **Stage result** (`Review approved`, `Review findings`, or `Review blocked`); **Destination status** (`In Progress`, `Paused`, or `Complete`); **Control** (`driver`, `user`, or `none`); **To** (one skill, `direct`, `scheduled`, `user`, or `none`); **Artifact** (local review path or inline result); **Evidence**; **Blocking item** (one precise prerequisite and owner, or `none`); and exactly one **Next action** (or `none` only when the destination is complete). Reserve destination `Complete` for a passed terminal audit.
 
-Then add **Continuation artifact** (path, `inline`, or `none`) and **Next prompt**. Keep `Next action` terse. For a skill, `direct`, or `scheduled` route, provide a compact launcher naming the authorized destination, repository, authoritative artifact, and stop conditions; the active plan driver consumes it without user intervention when executable, or at the recorded wake-up when scheduled. For `user`, provide one precise decision or evidence request. For `none`, write `Next prompt: none`. When project writes are already in scope, persist the launcher at the parent plan's `handoffs/next.md`, link it from `docs/agent/index.md`, and supersede any stale launcher; otherwise keep it inline. Keep it under 1,500 characters and link authoritative artifacts rather than replaying them.
+Then add **Continuation artifact** (path, `inline`, or `none`) and **Next prompt**. Keep `Next action` terse. For a skill, `direct`, or `scheduled` route, provide a compact launcher naming the authorized destination, repository, authoritative artifact, and stop conditions; the active plan driver consumes it without user intervention when executable, or at the recorded wake-up when scheduled. For `user`, provide one precise decision or evidence request. For `none`, write `Next prompt: none`. Persist the launcher at the parent plan's `handoffs/next.md` and link it from `docs/agent/index.md` only when lifecycle-artifact writes are explicitly authorized for the current branch; otherwise keep it inline or use the separately authorized planning location. Keep it under 1,500 characters and link authoritative artifacts rather than replaying them.

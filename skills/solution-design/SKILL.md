@@ -29,6 +29,14 @@ For an existing system, require cited evidence for the relevant execution path a
 
 Default to a short design containing only decisions a human should review before issue planning. Omit routine implementation mechanics unless they carry contract, failure, security, or maintainability risk. Do not generate ceremony merely because a template exists.
 
+Do not infer archival, retention, analytics, audit, restoration, reconciliation,
+observability, retry, migration, compatibility, historical-data, rollback, or
+operational-infrastructure requirements. Include one only when a named outcome
+or acceptance criterion, explicit user-approved constraint, or concrete
+correctness/safety failure path makes it part of the current decision frontier.
+Otherwise leave it out or present it as a separate user decision; completeness,
+preservation, symmetry, and future-proofing are not design authority.
+
 Design to the current decision horizon. Define only the product, system, and program shape needed to make the first vertical frontier safe and coherent. Keep later boundaries, infrastructure, file trees, and ownership provisional or Not yet specified unless current evidence makes an early commitment necessary.
 
 ## Shape material decisions
@@ -64,7 +72,12 @@ rollback consequences.
 1. Surface the few open decisions whose answers materially change the next safe, expensive, or irreversible step. Resolve them through evidence, an agent-owned reversible default, a decision packet, or an empirical feedback slice.
 2. Separate established facts, user decisions, reversible defaults, assumptions, alternatives, and **Not yet specified** decisions. Record which future behaviour each deferred decision may block. Do not silently choose a material or irreversible trade-off that only the user can own.
 3. Define the product view: user problem, observable outcome, success signal, workflow, constraints, and non-goals. Prefer a mockup or compact example when prose cannot establish alignment.
-4. Define the system view needed by the current frontier: relevant boundaries, contracts, schemas, data flow, authorization, failure semantics, compatibility, operations, rollout, and rollback. Do not settle later production topology merely to complete the view.
+4. Define only the system view causally required by the current approved
+   frontier. Cover relevant boundaries, contracts, schemas, data flow,
+   authorization, failure semantics, compatibility, operations, rollout, or
+   rollback only when the scope-authority rule above admits them. Do not settle
+   later production topology or preservation behaviour merely to complete the
+   view.
 5. Define the program view for the current frontier at the level needed to prevent expensive surprises:
    - call-path or control-flow outline;
    - file-tree changes and ownership boundaries;
@@ -81,7 +94,8 @@ Use small diagrams, pseudocode, call trees, file-tree diffs, and contract exampl
 ## Artifact
 
 Use the repository's planning convention. Otherwise create or update
-`docs/plans/<feature-name>/designs/solution.md` when project writes are in scope,
+`docs/plans/<feature-name>/designs/solution.md` only when lifecycle-artifact
+writes are explicitly authorized for the current branch,
 link it from the parent plan, and link the active plan from
 `docs/agent/index.md`. Include only applicable sections:
 
@@ -115,4 +129,4 @@ Return control after this skill's bounded responsibility ends. Set **Control** t
 
 End with: **Stage result** (`Design ready` or `Design blocked`); **Destination status** (`In Progress`, `Paused`, or `Complete`); **Control** (`driver`, `user`, or `none`); **To** (one skill, `direct`, `scheduled`, `user`, or `none`); **Artifact** (local path or inline result); **Evidence**; **Vertical frontier**; **Not yet specified**; **Blocking item** (one precise prerequisite and owner, or `none`); and exactly one **Next action** (or `none` only when the destination is complete). Reserve destination `Complete` for a passed terminal audit.
 
-Then add **Continuation artifact** (path, `inline`, or `none`) and **Next prompt**. Keep `Next action` terse. For a skill, `direct`, or `scheduled` route, provide a compact launcher naming the authorized destination, repository, authoritative artifact, and stop conditions; the active plan driver consumes it without user intervention when executable, or at the recorded wake-up when scheduled. For `user`, provide one precise decision or evidence request. For `none`, write `Next prompt: none`. When project writes are already in scope, persist the launcher at the parent plan's `handoffs/next.md`, link it from `docs/agent/index.md`, and supersede any stale launcher; otherwise keep it inline. Keep it under 1,500 characters and link authoritative artifacts rather than replaying them.
+Then add **Continuation artifact** (path, `inline`, or `none`) and **Next prompt**. Keep `Next action` terse. For a skill, `direct`, or `scheduled` route, provide a compact launcher naming the authorized destination, repository, authoritative artifact, and stop conditions; the active plan driver consumes it without user intervention when executable, or at the recorded wake-up when scheduled. For `user`, provide one precise decision or evidence request. For `none`, write `Next prompt: none`. Persist the launcher at the parent plan's `handoffs/next.md` and link it from `docs/agent/index.md` only when lifecycle-artifact writes are explicitly authorized for the current branch; otherwise keep it inline or use the separately authorized planning location. Keep it under 1,500 characters and link authoritative artifacts rather than replaying them.

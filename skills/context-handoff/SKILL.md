@@ -70,13 +70,18 @@ Before finishing:
 3. Distinguish established facts from assumptions and implementer claims.
 4. Keep the handoff shorter than the sources it indexes.
 
-Use the repository's handoff convention. Otherwise, when project writes are
-already in scope and an active parent plan exists, write the active handoff to
+Use the repository's handoff convention. Otherwise, when lifecycle-artifact
+writes are explicitly authorized for the current branch and an active parent plan exists, write the active handoff to
 that plan's `handoffs/next.md` and link it from `docs/agent/index.md`. If no
 active plan exists, use `.agent/handoffs/<task>.md`. Return the same structure
 in chat when writes are not in scope. Delete or supersede the temporary file or
 active link after consumption; move any durable decision into the active parent
 plan's `decisions/` directory rather than leaving it solely in a handoff.
+
+Product or implementation write authority does not authorize a handoff artifact
+on the current branch. Without explicit branch-level lifecycle-artifact
+authority, return the handoff inline or use a separately authorized planning
+location.
 
 ## Completion
 

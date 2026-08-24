@@ -30,6 +30,9 @@ After the issue's invariant and oracle are explicit, but before changing tests:
 
 Name tests for the behaviour they protect, not an incident or issue number.
 Repository architecture and conventions override the generic layer heuristic.
+They select where an already-authorized test change belongs; they do not
+authorize moving, deleting, consolidating, or adding other coverage for
+consistency alone.
 
 ## Permit deliberate overlap only
 
@@ -48,6 +51,11 @@ state.
 
 ## Consolidate safely
 
+Consolidate, move, or delete existing coverage only when the Ready issue
+explicitly includes it or evidence shows it is the smallest necessary correction
+for the approved oracle to be reliable. Otherwise leave existing coverage in
+place and record any improvement as a non-blocking follow-up.
+
 Before moving or deleting a suspected duplicate, verify that it does not protect
 another implementation, adapter, public contract, configuration, or failure
 mode. After consolidation:
@@ -64,4 +72,6 @@ evidence shows their protected behaviour is genuinely the same.
 For changed tests, `$code-review` verifies the stated invariant, owning layer,
 canonical suite, regression evidence, distinct purpose of any multi-layer
 coverage, and deletion safeguards. Missing ownership evidence is actionable
-when it creates duplication, brittleness, or a coverage gap.
+only when it causes an observable coverage failure for the approved invariant or
+makes its declared oracle unreliable. Duplication, brittleness, or consistency
+alone is a non-blocking follow-up outside the issue.

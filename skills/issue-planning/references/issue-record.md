@@ -28,6 +28,12 @@ announce its state.
 - Out of scope: <adjacent work explicitly excluded>
 - Delivery ownership: <one agent can complete this without rediscovering architecture or making a material direction>
 
+## Change-to-criterion map
+- <production/test/configuration/artifact change area> → <acceptance criterion,
+  explicit approved constraint or non-goal, or evidenced correctness/safety
+  necessity>
+- <remove any change area that has no valid mapping>
+
 ## Acceptance criteria
 - [ ] <observable success condition>
 - [ ] <failure or edge condition when relevant>
@@ -69,7 +75,8 @@ announce its state.
 
 Mark an issue `Ready` only when each field needed to establish its outcome, parent
 evidence, scope, dependencies, acceptance criteria, oracle, ownership, and
-replanning triggers is explicit and current. If one is absent, conflicting, stale,
+replanning triggers is explicit and current and every expected change area and
+test delta has a valid change-to-criterion mapping. If one is absent, conflicting, stale,
 or unverifiable, use `Draft` or `Blocked`.
 
 Readiness and authorization are separate. Move only one Ready issue to `In

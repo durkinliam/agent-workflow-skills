@@ -46,6 +46,23 @@ npx skills add durkinliam/agent-workflow-skills --skill problem-discovery
 Each skill's complete activation guidance and operating contract is in its
 `skills/<name>/SKILL.md` file.
 
+## Scope firewall
+
+The skills treat an approved outcome and its acceptance criteria as delivery
+authority. Every production, test, configuration, and task-branch artifact
+change must map to a named acceptance criterion, an explicit approved constraint
+or non-goal, or demonstrated correctness or safety necessity of the approved
+behaviour. Conventions select among in-scope implementations; preservation,
+consistency, completeness, symmetry, and future-proofing do not create scope.
+
+Blocking review findings must name that authority, demonstrate an observable
+failure or concrete executable failure path, and identify the smallest in-scope
+correction. Other observations are non-blocking follow-ups requiring a separate
+user decision. A demonstrated incorrect or unsafe outcome remains blocking when
+its smallest correction crosses the boundary, but the reviewer still cannot
+amend the Ready issue. Product-write authority does not authorize lifecycle
+artifacts on the current branch.
+
 ## License
 
 MIT

@@ -90,12 +90,14 @@ the route differs, but keep it subordinate to the thesis.
 
 ## Artifact
 
-Use the repository's planning convention. Otherwise, when project writes are in
-scope, create or update `docs/plans/<problem-name>/research/problem-discovery.md`,
+Use the repository's planning convention. Otherwise, when lifecycle-artifact
+writes are explicitly authorized for the current branch, create or update `docs/plans/<problem-name>/research/problem-discovery.md`,
 link it from the parent plan, and keep `docs/agent/index.md` link-only. Record the
 symptom, expectation, inquiry boundary, evidence, ranked theses, discriminators,
-user answers, reconstructed problem, and route. If the user requested analysis
-only or writes are not in scope, return the same evidence in chat.
+user answers, reconstructed problem, and route. Product or implementation write
+authority does not authorize these artifacts. Without explicit branch-level
+lifecycle-artifact authority, return the same evidence in chat or use a
+separately authorized planning location.
 
 ## Completion and handoff
 
@@ -115,7 +117,9 @@ Then add **Continuation artifact** (path, `inline`, or `none`) and **Next prompt
 For a skill or direct route, provide a compact launcher naming the authorized
 destination, repository, authoritative artifact, and stop conditions. For
 `user`, ask the single discriminating question and name the theses it separates.
-For `none`, write `Next prompt: none`. When project writes are already in scope,
-persist the launcher at the parent plan's `handoffs/next.md`, link it from
-`docs/agent/index.md`, and supersede stale launchers. Keep it under 1,500
+For `none`, write `Next prompt: none`. Persist the launcher at the parent plan's
+`handoffs/next.md` and link it from `docs/agent/index.md` only when
+lifecycle-artifact writes are explicitly authorized for the current branch;
+otherwise keep it inline or use the separately authorized planning location.
+Keep it under 1,500
 characters and link authoritative evidence rather than replaying it.
