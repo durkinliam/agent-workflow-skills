@@ -163,11 +163,10 @@ Report files changed, behaviour proved, design conformance or deviations, exact 
 
 ## Handoff
 
-Return control after this issue's bounded delivery responsibility ends. Set **Control** to `driver` when **To** is an executable authorized route or authorized scheduled wake-up, `user` only when a required user decision or permission prevents safe continuation, or `none` when the destination is complete and no onward route remains. The active plan driver may dispatch review or the next Ready issue in a fresh worker and continue the overarching task; this delivery worker must stop after its one issue.
-
-Record the effective model and effort in the evidence return so the plan driver
-can reject a delivery performed by an incorrectly classified worker.
-
-End with: **Stage result** (`Issue verified`, `Issue blocked`, or `Replan required`); **Destination status** (`In Progress`, `Paused`, or `Complete`); **Control** (`driver`, `user`, or `none`); **To** (one skill, `direct`, `scheduled`, `user`, or `none`); **Artifact** (local issue path or inline result); **Evidence**; **Blocking item** (one precise prerequisite and owner, or `none`); and exactly one **Next action** (or `none` only when the destination is complete). Preserve issue lifecycle state separately and reserve destination `Complete` for a passed terminal audit.
-
-Then add **Continuation artifact** (`PLAN.md`, `inline`, or `none`) and **Next prompt**. Keep `Next action` terse. For a skill, `direct`, or `scheduled` route, provide a compact launcher naming the authorized destination, repository, authoritative issue, and stop conditions; the active plan driver consumes it without user intervention when executable, or at the recorded wake-up when scheduled. For `user`, provide one precise decision or evidence request. For `none`, write `Next prompt: none`. Record the active launcher in `PLAN.md`'s next-action section. Do not create a separate handoff file. Keep it under 1,500 characters and link authoritative artifacts rather than replaying them.
+Persist the issue result, exact evidence, blocker, effective model and effort,
+route, next action, and compact launcher in the canonical issue and `PLAN.md`.
+If a user-owned boundary decision or permission is required, state what was
+proved, explain the concrete failure path or authority gap, and ask one precise
+question. Otherwise return control to the plan driver, which may dispatch review
+or the next Ready issue without user intervention. This worker stops after its
+one issue and does not print an internal routing block.

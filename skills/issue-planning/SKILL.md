@@ -134,8 +134,10 @@ Finish with the ordered issue list, dependency notes, Blocked reasons, Ready fro
 
 ## Handoff
 
-Return control after this skill's bounded responsibility ends. Set **Control** to `driver` when **To** is an executable authorized route or authorized scheduled wake-up, `user` only when a required user decision or permission prevents safe continuation, or `none` when the destination is complete and no onward route remains. The active plan driver may dispatch one Ready issue in a fresh worker and continue the overarching task; do not implement it inside this planning context.
-
-End with: **Stage result** (`Planning ready` or `Planning blocked`); **Destination status** (`In Progress`, `Paused`, or `Complete`); **Control** (`driver`, `user`, or `none`); **To** (one skill, `direct`, `scheduled`, `user`, or `none`); **Artifact** (local issue path or inline result); **Evidence**; **Ready frontier**; **Not yet specified**; **Blocking item** (one precise prerequisite and owner, or `none`); and exactly one **Next action** (or `none` only when the destination is complete). Preserve issue lifecycle state separately and reserve destination `Complete` for a passed terminal audit.
-
-Then add **Continuation artifact** (`PLAN.md`, `inline`, or `none`) and **Next prompt**. Keep `Next action` terse. For a skill, `direct`, or `scheduled` route, provide a compact launcher naming the authorized destination, repository, authoritative artifact, and stop conditions; the active plan driver consumes it without user intervention when executable, or at the recorded wake-up when scheduled. For `user`, provide one precise decision or evidence request. For `none`, write `Next prompt: none`. Record the active launcher in `PLAN.md`'s next-action section. Do not create a separate handoff file. Keep it under 1,500 characters and link authoritative artifacts rather than replaying them.
+Persist the ordered issue list, dependency state, Ready frontier, Not yet
+specified items, blocker, route, next action, and compact launcher in `PLAN.md`
+and the canonical issues. If one user decision or authorization is required,
+state what is Ready, explain what the answer changes, and ask one precise
+question. Otherwise the plan driver dispatches the next authorized Ready issue
+in a fresh worker without asking the user to invoke a prompt. Do not implement
+the issue in this planning context or print an internal routing block.

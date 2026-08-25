@@ -100,21 +100,8 @@ consequences; do not create a research file or preserve exploration transcripts.
 Stop when one strong thesis supports an honest route, a small ranked set exposes
 the cheapest discriminator, or one precise user answer is required.
 
-End with: **Stage result** (`Problem established`, `Theses ranked`, or `Problem
-discovery blocked`); **Destination status** (`In Progress`, `Paused`, or
-`Complete`); **Control** (`driver`, `user`, or `none`); **To** (one skill,
-`direct`, `user`, or `none`); **Artifact** (local path or inline result);
-**Evidence**; **Problem thesis** (one sentence or `not yet established`);
-**Blocking item** (one precise prerequisite and owner, or `none`); and exactly
-one **Next action** (or `none` only when the destination is complete). Reserve
-destination `Complete` for a passed terminal audit.
-
-Then add **Continuation artifact** (path, `inline`, or `none`) and **Next prompt**.
-For a skill or direct route, provide a compact launcher naming the authorized
-destination, repository, authoritative artifact, and stop conditions. For
-`user`, ask the single discriminating question and name the theses it separates.
-For `none`, write `Next prompt: none`. Record the active launcher in `PLAN.md`'s
-next-action section when a plan exists; otherwise keep it inline. Do not create a
-separate handoff file.
-Keep it under 1,500
-characters and link authoritative evidence rather than replaying it.
+Persist the problem thesis or ranked theses, evidence, blocker, route, next
+action, and compact launcher in `PLAN.md`. If one user answer is required, state
+what is established, name the theses the answer separates, and ask the single
+discriminating question. Otherwise return the authorized route to the plan
+driver without printing an internal routing block or requiring a copied prompt.

@@ -131,8 +131,11 @@ independent review before relying on approval again.
 
 ## Handoff
 
-Return control after this independent review responsibility ends. Set **Control** to `driver` when **To** is an executable authorized route or authorized scheduled wake-up, `user` only when a required user decision or permission prevents safe continuation, or `none` when the destination is complete and no onward route remains. The active plan driver may dispatch fixes, integration review, or the next Ready issue and continue the overarching task; this reviewer remains read-only.
-
-End with: **Stage result** (`Review approved`, `Review findings`, or `Review blocked`); **Destination status** (`In Progress`, `Paused`, or `Complete`); **Control** (`driver`, `user`, or `none`); **To** (one skill, `direct`, `scheduled`, `user`, or `none`); **Artifact** (canonical issue path or inline result); **Base/Head**; **Evidence**; **Findings**; **Blocking item** (one precise prerequisite and owner, or `none`); and exactly one **Next action** (or `none` only when the destination is complete). Reserve destination `Complete` for a passed terminal audit.
-
-Then add **Continuation artifact** (`PLAN.md`, `inline`, or `none`) and **Next prompt**. Keep `Next action` terse. For a skill, `direct`, or `scheduled` route, provide a compact launcher naming the authorized destination, repository, authoritative issue, and stop conditions; the active plan driver consumes it without user intervention when executable, or at the recorded wake-up when scheduled. For `user`, provide one precise decision or evidence request. For `none`, write `Next prompt: none`. The plan driver records the active launcher in `PLAN.md`'s next-action section after the review context ends. Do not create a separate handoff file. Keep it under 1,500 characters and link authoritative artifacts rather than replaying them.
+Return the disposition, reviewed base/head, evidence, findings, blocker, route,
+next action, and compact launcher to the plan driver without writing files. After
+this read-only context ends, the driver persists them in the canonical issue and
+`PLAN.md`. If a Boundary blocker needs a user decision, state the protected
+criterion, concrete failure path, and smallest proposed expansion, then ask one
+precise question. Otherwise the driver continues with authorized fixes,
+integration review, or the next Ready issue without user intervention. Do not
+print an internal routing block.

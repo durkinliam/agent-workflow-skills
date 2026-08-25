@@ -50,8 +50,9 @@ Stop as soon as the named question is answered or the boundary is exhausted. Ret
 
 ## Handoff
 
-Return control after this skill's bounded responsibility ends. Set **Control** to `driver` when **To** is an executable authorized route or authorized scheduled wake-up, `user` only when a required user decision or permission prevents safe continuation, or `none` when the destination is complete and no onward route remains. The active plan driver may resume the parent stage in the overarching task, including in a fresh worker; do not absorb that parent stage into this spike context.
-
-End with: **Stage result** (`Spike resolved`, `Spike inconclusive`, or `Spike blocked`); **Destination status** (`In Progress`, `Paused`, or `Complete`); **Control** (`driver`, `user`, or `none`); **To** (one skill, `direct`, `scheduled`, `user`, or `none`); **Artifact** (local path or inline result); **Evidence**; **Blocking item** (one precise prerequisite and owner, or `none`); and exactly one **Next action** (or `none` only when the destination is complete). Reserve destination `Complete` for a passed terminal audit.
-
-Then add **Continuation artifact** (`PLAN.md`, `inline`, or `none`) and **Next prompt**. Keep `Next action` terse. For a skill, `direct`, or `scheduled` route, provide a compact launcher naming the authorized destination, repository, authoritative artifact, and stop conditions; the active plan driver consumes it without user intervention when executable, or at the recorded wake-up when scheduled. For `user`, provide one precise decision or evidence request. For `none`, write `Next prompt: none`. Record the active launcher in `PLAN.md`'s next-action section when a plan exists; otherwise keep it inline. Do not create a separate handoff file. Keep it under 1,500 characters and link authoritative artifacts rather than replaying them.
+Persist whether the spike answered the question, its evidence, blocker, route,
+next action, and compact launcher in `PLAN.md` and affected issues. If one user
+answer or permission is required, state the conclusion reached so far, explain
+the remaining uncertainty, and ask one precise question. Otherwise return the
+result to the parent stage, which may continue in a fresh worker without user
+intervention. Do not print an internal routing block or absorb the parent stage.

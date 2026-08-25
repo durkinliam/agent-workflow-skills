@@ -35,27 +35,21 @@ Test routes in this order:
 Do not recommend `$wayfinding` merely because the eventual system is large. Do not recommend a lifecycle skill when direct work is already safe, but do not use `direct` to bypass a supplied Ready issue or proportionate controls for material work. If a user explicitly names a suitable skill, skip this adviser and use it.
 
 Recommending `direct` does not authorize production editing. If the execution
-contract is not yet approved, the `Next prompt` must authorize only the minimum
-investigation needed to present that contract, then stop for user approval. If
-the prompt already contains approval, the launcher may proceed through delivery.
+contract is not yet approved, the internal launcher may authorize only the
+minimum investigation needed to present that contract, then stop for user
+approval. If the prompt already contains approval, the launcher may proceed
+through delivery.
 
 ## Return only advice
 
-Return exactly:
+Retain the selected route, prompt evidence, one blocker or none, exact next
+action, and compact launcher as internal routing state. When an active plan
+exists, persist that state in its next-action section; this advice-only skill
+does not create an artifact.
 
-```md
-**Stage result:** Route selected
-**Destination status:** `In Progress`, `Paused`, or `Complete`
-**Control:** `driver`, `user`, or `none`
-**To:** `direct`, one `$skill`, `scheduled`, or `user`
-**Artifact:** none
-**Evidence:** <the prompt facts that determined the route>
-**Blocking item:** <one prerequisite and owner, or none>
-**Next action:** <one exact action or invocation>
-**Continuation artifact:** inline
-**Next prompt:** <a compact launcher for `direct`, one skill, or `scheduled`, or one precise decision/evidence request for `user`>
-```
-
-Keep `Next action` terse; it is not the prompt. For an executable or scheduled route, keep `Next prompt` under 1,500 characters and name the authorized destination, repository, authoritative artifact, and stop conditions; include the wake-up time and resume action when scheduled. Link authoritative artifacts rather than replaying them. This advice-only skill does not create a durable continuation artifact. Reserve destination `Complete` for a passed terminal audit.
-
-End the adviser's bounded responsibility and return the route to the active plan driver. Set **Control** to `driver` for an executable authorized route or authorized scheduled wake-up, `user` when one required decision or permission prevents safe routing, or `none` when no onward work remains. The driver may begin the recommended route in the same overarching task, including in a fresh worker, or resume it at the recorded wake-up; do not perform that downstream route inside this adviser context.
+If one user decision or permission is required, state the recommended route so
+far, explain what the answer changes, and ask that one question. Otherwise give
+the route recommendation naturally and return it to the active plan driver. The
+driver may begin an authorized route or resume an authorized schedule without
+asking the user to invoke a prompt. Do not perform the downstream route inside
+this adviser context or print the internal routing fields.

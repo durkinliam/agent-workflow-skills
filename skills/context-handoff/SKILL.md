@@ -52,17 +52,14 @@ Reference authoritative sources instead of duplicating their content. Include on
 
 ## Next action
 <exactly one action and the suggested skill>
-
-## Continuation prompt
-<compact copy-pasteable launcher for the next context>
 ```
 
 Exclude exploration history, superseded plans, long successful command output, secrets, and facts discoverable cheaply from the linked sources. State uncertainty rather than smoothing it into a confident summary.
 
-Keep the continuation launcher under 1,500 characters. Make it self-contained by
-naming the authorized destination, repository, authoritative handoff, and stopping
-conditions. Do not copy evidence, route inventories, or acceptance criteria that the
-linked handoff already contains.
+Retain any compact continuation launcher only in the active `PLAN.md` or agent
+context. Make it self-contained by naming the authorized destination, repository,
+authoritative handoff, and stopping conditions. Do not include it in a handoff
+returned to the user or ask the user to copy it into another context.
 
 ## Verify portability
 
@@ -79,18 +76,17 @@ Before finishing:
 
 When an active plan exists, compact established state into its `PLAN.md`, update
 the current issue when issue-local state changed, and record the launcher in the
-plan's next-action section. Otherwise return the handoff inline. Do not create a
-separate handoff file or preserve conversation history. A material decision
-belongs once in `PLAN.md`, not in the launcher.
+plan's next-action section. Otherwise return the handoff inline without the
+launcher. Do not create a separate handoff file or preserve conversation history.
+A material decision belongs once in `PLAN.md`, not in the launcher.
 
 ## Completion
 
-Return the handoff artifact to the active plan driver. Do not continue the downstream implementation or review in this worker context; the driver may start the intended fresh worker and continue the same overarching task without user intervention when the route is authorized and unblocked.
-
-Set **Control** to `driver` when **To** is an executable authorized route or an authorized scheduled wake-up, `user` only when a required user decision or permission prevents safe continuation, or `none` when the destination is complete and no onward route remains. Before assigning `user`, confirm that the plan driver has evaluated every independent destination route and that none remains safely executable.
-
-End with: **Stage result** (`Handoff ready` or `Handoff blocked`); **Destination status** (`In Progress`, `Paused`, or `Complete`); **Control** (`driver`, `user`, or `none`); **To** (one skill, `direct`, `scheduled`, `user`, or `none`); **Artifact** (`PLAN.md`, `inline`, or `none`); **Evidence**; **Blocking item** (one precise prerequisite and owner, or `none`); and exactly one **Next action** (or `none` when the destination is complete). Reserve destination `Complete` for a passed terminal audit; never use it merely because this handoff is finished.
-
-Then add **Continuation artifact** (`PLAN.md`, `inline`, or `none`) and **Next prompt**. Keep `Next action` terse; it is not the prompt. For a skill, `direct`, or `scheduled` route, provide the compact launcher recorded in `PLAN.md` when a plan exists; the active plan driver consumes it without user intervention when executable, or at the recorded wake-up when scheduled. For `user`, provide one precise decision or evidence request. For `none`, write `Next prompt: none`. Link authoritative artifacts rather than replaying them, and keep the launcher under 1,500 characters.
-For a delegated route, the launcher must name the execution class, model,
-reasoning effort, authority boundary, and stop condition. Never route to Terra.
+Return the compact handoff state to the active plan driver. For a delegated
+route, retain the execution class, model, reasoning effort, authority boundary,
+and stop condition; never route to Terra. If the route is authorized and
+unblocked, the driver starts the intended fresh worker without user intervention.
+If one user decision or permission is unavoidable after every independent route
+is evaluated, state what is established, explain why the answer is needed, and
+ask one precise question. Do not continue downstream work in this context or
+print an internal routing block.

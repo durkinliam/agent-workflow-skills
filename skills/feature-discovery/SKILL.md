@@ -55,8 +55,9 @@ Finish with a concise handoff: research location, evidence established, contradi
 
 ## Handoff
 
-Return control after this skill's bounded responsibility ends. Set **Control** to `driver` when **To** is an executable authorized route or authorized scheduled wake-up, `user` only when a required user decision or permission prevents safe continuation, or `none` when the destination is complete and no onward route remains. The active plan driver may continue the overarching task, including in a fresh worker; do not absorb the downstream skill into this discovery context.
-
-End with: **Stage result** (`Discovery ready` or `Discovery blocked`); **Destination status** (`In Progress`, `Paused`, or `Complete`); **Control** (`driver`, `user`, or `none`); **To** (one skill, `direct`, `scheduled`, `user`, or `none`); **Artifact** (local path or inline result); **Evidence**; **Not yet specified**; **Blocking item** (one precise prerequisite and owner, or `none`); and exactly one **Next action** (or `none` only when the destination is complete). Reserve destination `Complete` for a passed terminal audit.
-
-Then add **Continuation artifact** (`PLAN.md`, `inline`, or `none`) and **Next prompt**. Keep `Next action` terse. For a skill, `direct`, or `scheduled` route, provide a compact launcher naming the authorized destination, repository, authoritative artifact, and stop conditions; the active plan driver consumes it without user intervention when executable, or at the recorded wake-up when scheduled. For `user`, provide one precise decision or evidence request. For `none`, write `Next prompt: none`. Record the active launcher in `PLAN.md`'s next-action section when a plan exists; otherwise keep it inline. Do not create a separate handoff file. Keep it under 1,500 characters and link authoritative artifacts rather than replaying them.
+Persist the discovery result, evidence, Not yet specified items, blocker, route,
+next action, and compact launcher in `PLAN.md`. If one user answer is required,
+state what is known, explain what remains blocked, and ask that one precise
+question. Otherwise return the authorized route to the plan driver, which may
+continue in a fresh worker without user intervention. Do not absorb the
+downstream skill or print an internal routing block.
