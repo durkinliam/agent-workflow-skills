@@ -27,12 +27,21 @@ After the issue's invariant and oracle are explicit, but before changing tests:
 6. Keep the change inside the approved test delta. If proving the invariant
    requires another seam or broader coverage, invalidate the verification budget
    and replan instead of adding tests opportunistically.
+7. Treat the named suites, files, invariants, maximum cases, and new-file count as
+   a hard ceiling. `Modify existing` is insufficient authorization unless the
+   exact owning suite and bounded case delta are recorded.
 
 Name tests for the behaviour they protect, not an incident or issue number.
 Repository architecture and conventions override the generic layer heuristic.
 They select where an already-authorized test change belongs; they do not
 authorize moving, deleting, consolidating, or adding other coverage for
 consistency alone.
+
+Do not add or change tests merely because production code changed, coverage is
+low, a neighbouring suite has similar cases, an implementation detail is hard to
+reason about, or a reviewer proposes more assurance. A failing test outside the
+approved invariant is evidence to classify; it is not authority to repair or
+rewrite that test in the current issue.
 
 ## Permit deliberate overlap only
 
@@ -52,9 +61,11 @@ state.
 ## Consolidate safely
 
 Consolidate, move, or delete existing coverage only when the Ready issue
-explicitly includes it or evidence shows it is the smallest necessary correction
-for the approved oracle to be reliable. Otherwise leave existing coverage in
-place and record any improvement as a non-blocking follow-up.
+explicitly includes it and the exact test allowance covers it. If evidence shows
+that an unapproved consolidation is necessary for the oracle to be reliable,
+invalidate the verification budget and report a boundary blocker. Otherwise
+leave existing coverage in place and record any improvement as a non-blocking
+follow-up.
 
 Before moving or deleting a suspected duplicate, verify that it does not protect
 another implementation, adapter, public contract, configuration, or failure

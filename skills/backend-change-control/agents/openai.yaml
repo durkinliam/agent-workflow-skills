@@ -1,0 +1,4 @@
+interface:
+  display_name: "Backend Change Control"
+  short_description: "Constrain touched backend contracts and seams"
+  default_prompt: "Use $backend-change-control to bind the touched backend seams to the approved change and verification oracle."

@@ -93,11 +93,8 @@ Use small diagrams, pseudocode, call trees, file-tree diffs, and contract exampl
 
 ## Artifact
 
-Use the repository's planning convention. Otherwise create or update
-`docs/plans/<feature-name>/designs/solution.md` only when lifecycle-artifact
-writes are explicitly authorized for the current branch,
-link it from the parent plan, and link the active plan from
-`docs/agent/index.md`. Include only applicable sections:
+Update the design section of `.agent/plans/<feature-name>/PLAN.md`. Include only
+applicable sections:
 
 - outcome, success signal, constraints, and non-goals;
 - evidence and decisions;
@@ -112,8 +109,11 @@ link it from the parent plan, and link the active plan from
   yet specified**, plus the evidence or future feedback point that controls it;
 - current next step.
 
-Keep the artifact concise enough to review. Link to research instead of replaying it. Record rejected alternatives only when the reason constrains later work.
-Keep the project index link-only and update current stage, vertical frontier, Not yet specified decisions, and next action. Record a durable material decision once under the repository's decision convention or the parent plan's `decisions/` directory, then link it from the design.
+Keep `PLAN.md` concise enough to review. Summarize established evidence rather
+than replaying research. Record a material decision once in the plan and rejected
+alternatives only when their reason constrains later work. Replace superseded
+design text after preserving its current consequences; do not create separate
+design or decision files.
 
 ## Completion
 
@@ -129,4 +129,4 @@ Return control after this skill's bounded responsibility ends. Set **Control** t
 
 End with: **Stage result** (`Design ready` or `Design blocked`); **Destination status** (`In Progress`, `Paused`, or `Complete`); **Control** (`driver`, `user`, or `none`); **To** (one skill, `direct`, `scheduled`, `user`, or `none`); **Artifact** (local path or inline result); **Evidence**; **Vertical frontier**; **Not yet specified**; **Blocking item** (one precise prerequisite and owner, or `none`); and exactly one **Next action** (or `none` only when the destination is complete). Reserve destination `Complete` for a passed terminal audit.
 
-Then add **Continuation artifact** (path, `inline`, or `none`) and **Next prompt**. Keep `Next action` terse. For a skill, `direct`, or `scheduled` route, provide a compact launcher naming the authorized destination, repository, authoritative artifact, and stop conditions; the active plan driver consumes it without user intervention when executable, or at the recorded wake-up when scheduled. For `user`, provide one precise decision or evidence request. For `none`, write `Next prompt: none`. Persist the launcher at the parent plan's `handoffs/next.md` and link it from `docs/agent/index.md` only when lifecycle-artifact writes are explicitly authorized for the current branch; otherwise keep it inline or use the separately authorized planning location. Keep it under 1,500 characters and link authoritative artifacts rather than replaying them.
+Then add **Continuation artifact** (`PLAN.md`, `inline`, or `none`) and **Next prompt**. Keep `Next action` terse. For a skill, `direct`, or `scheduled` route, provide a compact launcher naming the authorized destination, repository, authoritative artifact, and stop conditions; the active plan driver consumes it without user intervention when executable, or at the recorded wake-up when scheduled. For `user`, provide one precise decision or evidence request. For `none`, write `Next prompt: none`. Record the active launcher in `PLAN.md`'s next-action section when a plan exists; otherwise keep it inline. Do not create a separate handoff file. Keep it under 1,500 characters and link authoritative artifacts rather than replaying them.

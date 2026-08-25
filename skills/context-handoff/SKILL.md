@@ -41,6 +41,9 @@ Reference authoritative sources instead of duplicating their content. Include on
 ## Constraints and non-goals
 <only those needed by the next context>
 
+## Execution class and model
+<judgment or evidence; explicit model and reasoning effort; authority boundary>
+
 ## Evidence
 <exact checks and results; concise failure details; skipped checks>
 
@@ -69,19 +72,16 @@ Before finishing:
 2. Confirm the next context can identify the authoritative intent and verification oracle without this conversation.
 3. Distinguish established facts from assumptions and implementer claims.
 4. Keep the handoff shorter than the sources it indexes.
+5. Confirm the execution class matches the work: use `gpt-5.6-sol` at `medium`
+   for implementation, review, decisions, or final disposition; use
+   `gpt-5.6-luna` at `xhigh` or bounded `max` only for non-writing evidence
+   work. Treat a combined review-and-oracle assignment as Sol review work.
 
-Use the repository's handoff convention. Otherwise, when lifecycle-artifact
-writes are explicitly authorized for the current branch and an active parent plan exists, write the active handoff to
-that plan's `handoffs/next.md` and link it from `docs/agent/index.md`. If no
-active plan exists, use `.agent/handoffs/<task>.md`. Return the same structure
-in chat when writes are not in scope. Delete or supersede the temporary file or
-active link after consumption; move any durable decision into the active parent
-plan's `decisions/` directory rather than leaving it solely in a handoff.
-
-Product or implementation write authority does not authorize a handoff artifact
-on the current branch. Without explicit branch-level lifecycle-artifact
-authority, return the handoff inline or use a separately authorized planning
-location.
+When an active plan exists, compact established state into its `PLAN.md`, update
+the current issue when issue-local state changed, and record the launcher in the
+plan's next-action section. Otherwise return the handoff inline. Do not create a
+separate handoff file or preserve conversation history. A material decision
+belongs once in `PLAN.md`, not in the launcher.
 
 ## Completion
 
@@ -89,6 +89,8 @@ Return the handoff artifact to the active plan driver. Do not continue the downs
 
 Set **Control** to `driver` when **To** is an executable authorized route or an authorized scheduled wake-up, `user` only when a required user decision or permission prevents safe continuation, or `none` when the destination is complete and no onward route remains. Before assigning `user`, confirm that the plan driver has evaluated every independent destination route and that none remains safely executable.
 
-End with: **Stage result** (`Handoff ready` or `Handoff blocked`); **Destination status** (`In Progress`, `Paused`, or `Complete`); **Control** (`driver`, `user`, or `none`); **To** (one skill, `direct`, `scheduled`, `user`, or `none`); **Artifact** (local handoff path or inline result); **Evidence**; **Blocking item** (one precise prerequisite and owner, or `none`); and exactly one **Next action** (or `none` when the destination is complete). Reserve destination `Complete` for a passed terminal audit; never use it merely because this handoff is finished.
+End with: **Stage result** (`Handoff ready` or `Handoff blocked`); **Destination status** (`In Progress`, `Paused`, or `Complete`); **Control** (`driver`, `user`, or `none`); **To** (one skill, `direct`, `scheduled`, `user`, or `none`); **Artifact** (`PLAN.md`, `inline`, or `none`); **Evidence**; **Blocking item** (one precise prerequisite and owner, or `none`); and exactly one **Next action** (or `none` when the destination is complete). Reserve destination `Complete` for a passed terminal audit; never use it merely because this handoff is finished.
 
-Then add **Continuation artifact** (normally the handoff artifact, otherwise `inline` or `none`) and **Next prompt**. Keep `Next action` terse; it is not the prompt. For a skill, `direct`, or `scheduled` route, provide the handoff's compact launcher; the active plan driver consumes it without user intervention when executable, or at the recorded wake-up when scheduled. For `user`, provide one precise decision or evidence request. For `none`, write `Next prompt: none`. Link authoritative artifacts rather than replaying them, and keep the launcher under 1,500 characters.
+Then add **Continuation artifact** (`PLAN.md`, `inline`, or `none`) and **Next prompt**. Keep `Next action` terse; it is not the prompt. For a skill, `direct`, or `scheduled` route, provide the compact launcher recorded in `PLAN.md` when a plan exists; the active plan driver consumes it without user intervention when executable, or at the recorded wake-up when scheduled. For `user`, provide one precise decision or evidence request. For `none`, write `Next prompt: none`. Link authoritative artifacts rather than replaying them, and keep the launcher under 1,500 characters.
+For a delegated route, the launcher must name the execution class, model,
+reasoning effort, authority boundary, and stop condition. Never route to Terra.

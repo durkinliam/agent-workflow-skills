@@ -14,9 +14,14 @@ Establish before reviewing:
 - repository, applicable instructions, and current state;
 - base and head commit or an equivalent immutable diff boundary;
 - parent design, issue, acceptance criteria, decisions, and non-goals;
-- claimed verification evidence and skipped checks.
+- claimed verification evidence and skipped checks; and
+- an explicit judgment-class dispatch using `gpt-5.6-sol` at `medium` effort.
 
-If the diff boundary or intended behaviour cannot be established, report that as a blocker instead of reviewing a moving or reconstructed target.
+If the diff boundary, intended behaviour, or required model/effort pair cannot
+be established, report that as a blocker instead of reviewing a moving,
+reconstructed, or incorrectly classified target. A review worker remains Sol at
+medium effort when it also runs or verifies the declared oracle; do not split
+the final verification disposition into a Luna evidence assignment.
 
 Start from a fresh context that did not implement the change. Context separation reduces trajectory bias; for security, permissions, money, migrations, concurrency, major architecture, or similarly consequential work, prefer an additional independent reviewer or specialist tool when available and proportionate.
 
@@ -96,11 +101,11 @@ future-proofing. If correcting concrete incorrectness or unsafety would cross an
 explicit non-goal or issue boundary, return the evidence to the user as a
 separate scope decision rather than silently widening the issue.
 
-When review-artifact writes are explicitly authorized for the current branch and no repository convention exists,
-have the plan driver store the returned review under the active parent plan's
-`reviews/<scope>-code-review.md`, link it from the canonical local issue, and
-update only the review status and next action in `docs/agent/index.md`. Do not
-use remote review summaries as the sole durable evidence.
+The reviewer returns its report inline. After the review context ends, have the
+plan driver record the disposition, findings, accepted risks, evidence, and
+reviewed base/head in the canonical local issue. Update only shared consequences,
+frontier, and next action in `PLAN.md`. Do not create a separate review file or
+use remote review summaries as the sole evidence.
 
 ## Disposition
 
@@ -128,6 +133,6 @@ independent review before relying on approval again.
 
 Return control after this independent review responsibility ends. Set **Control** to `driver` when **To** is an executable authorized route or authorized scheduled wake-up, `user` only when a required user decision or permission prevents safe continuation, or `none` when the destination is complete and no onward route remains. The active plan driver may dispatch fixes, integration review, or the next Ready issue and continue the overarching task; this reviewer remains read-only.
 
-End with: **Stage result** (`Review approved`, `Review findings`, or `Review blocked`); **Destination status** (`In Progress`, `Paused`, or `Complete`); **Control** (`driver`, `user`, or `none`); **To** (one skill, `direct`, `scheduled`, `user`, or `none`); **Artifact** (local review path or inline result); **Base/Head**; **Evidence**; **Findings**; **Blocking item** (one precise prerequisite and owner, or `none`); and exactly one **Next action** (or `none` only when the destination is complete). Reserve destination `Complete` for a passed terminal audit.
+End with: **Stage result** (`Review approved`, `Review findings`, or `Review blocked`); **Destination status** (`In Progress`, `Paused`, or `Complete`); **Control** (`driver`, `user`, or `none`); **To** (one skill, `direct`, `scheduled`, `user`, or `none`); **Artifact** (canonical issue path or inline result); **Base/Head**; **Evidence**; **Findings**; **Blocking item** (one precise prerequisite and owner, or `none`); and exactly one **Next action** (or `none` only when the destination is complete). Reserve destination `Complete` for a passed terminal audit.
 
-Then add **Continuation artifact** (path, `inline`, or `none`) and **Next prompt**. Keep `Next action` terse. For a skill, `direct`, or `scheduled` route, provide a compact launcher naming the authorized destination, repository, authoritative artifact, and stop conditions; the active plan driver consumes it without user intervention when executable, or at the recorded wake-up when scheduled. For `user`, provide one precise decision or evidence request. For `none`, write `Next prompt: none`. Persist the launcher at the parent plan's `handoffs/next.md` and link it from `docs/agent/index.md` only when lifecycle-artifact writes are explicitly authorized for the current branch; otherwise keep it inline or use the separately authorized planning location. Keep it under 1,500 characters and link authoritative artifacts rather than replaying them.
+Then add **Continuation artifact** (`PLAN.md`, `inline`, or `none`) and **Next prompt**. Keep `Next action` terse. For a skill, `direct`, or `scheduled` route, provide a compact launcher naming the authorized destination, repository, authoritative issue, and stop conditions; the active plan driver consumes it without user intervention when executable, or at the recorded wake-up when scheduled. For `user`, provide one precise decision or evidence request. For `none`, write `Next prompt: none`. The plan driver records the active launcher in `PLAN.md`'s next-action section after the review context ends. Do not create a separate handoff file. Keep it under 1,500 characters and link authoritative artifacts rather than replaying them.

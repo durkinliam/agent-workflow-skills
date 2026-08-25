@@ -1,11 +1,19 @@
 ---
 name: issue-planning
-description: Convert an approved current solution design, or a simple evidence-backed plan, into ordered and independently verifiable vertical issues with a Ready frontier. Use when a broad outcome must become small delivery tasks suitable for one focused agent context. An issue may be Ready while later feature decisions remain unknown. Do not invent issue-local architecture, implement code, or create external tracker issues unless explicitly authorized.
+description: Convert an approved current solution design, or a simple evidence-backed plan, into closed-world, independently verifiable vertical issues with a Ready frontier. Use when an approved outcome must become small delivery tasks suitable for one focused agent context. An issue may be Ready while later feature decisions remain unknown. Decompose and narrow approved behaviour; do not add requirements, invent issue-local architecture, implement code, or create external tracker issues unless explicitly authorized.
 ---
 
 # Issue Planning
 
 Turn an approved design or simple plan into executable work without losing scope, evidence, or dependencies.
+
+Planning is closed-world. It may decompose, order, and narrow approved behaviour,
+but every issue outcome, acceptance criterion, production capability, and test
+invariant must cite an approved parent clause or evidenced correctness/safety
+constraint of that behaviour. A newly discovered desirable or necessary
+behaviour is a boundary finding for the user, not another issue in the authorized
+frontier. Planning cannot promote an assumption, convention, reviewer suggestion,
+or implementation idea into scope.
 
 ## Workflow
 
@@ -15,7 +23,7 @@ Turn an approved design or simple plan into executable work without losing scope
 4. Slice subsequent work by observable behaviour or evidenced risk tied to an
    approved outcome, criterion, or correctness/safety constraint, not by
    technical layer. Generic future risk is not issue scope.
-5. Preserve agreed contracts and program-design decisions in the affected issue context without copying the whole design. Record the authorization source separately from technical readiness; an approved parent destination may authorize later slices that remain inside its agreed boundary.
+5. Preserve agreed contracts and program-design decisions in the affected issue context without copying the whole design. Record the authorization source separately from technical readiness. Parent approval covers only the Ready issue IDs and revisions present at approval unless it explicitly defines a bounded program envelope for later issues.
 6. Order dependencies and identify work that is genuinely independent.
 7. Record later behaviours or decisions as **Not yet specified** with the issue or milestone at which they must be resolved.
 8. Route unresolved evidence questions to `$spike` and mark only affected issues **Blocked**.
@@ -26,10 +34,14 @@ Turn an approved design or simple plan into executable work without losing scope
    authoritative decision explicitly selects it and the issue names the
    canonical target shape and boundary evidence.
 10. Mark an issue **Ready** only when it meets every readiness rule below.
+11. When the issue touches an API, persistence boundary, transaction, background
+    job, queue, authorization boundary, clock, concurrency path, or external side
+    effect, compose `$backend-change-control`. Record only the seams actually
+    touched; its inventory cannot add requirements.
 
 A vertical issue may deliberately turn a provisional decision into evidence when
-the observable behaviour, safe change boundary, rollback, and oracle are already
-defined. State which decision is **Provisional for slice**, what result will
+the observable behaviour, safe change boundary, and oracle are already defined,
+and any recovery or rollback requirement is explicitly approved. State which decision is **Provisional for slice**, what result will
 validate or invalidate it, and where the planning consequence will be recorded.
 Use `$spike` instead when the production behaviour or safe boundary is itself
 unknown. Implementation-as-evidence does not waive readiness.
@@ -42,13 +54,17 @@ parent plan and evidence, preserve the relevant design constraints, and define
 one outcome, bounded scope and non-goals, acceptance criteria, dependencies,
 replanning triggers, a change-to-criterion map, and a verification strategy.
 Map every expected production, test, configuration, and task-branch artifact
-change area to a named acceptance criterion, explicit approved constraint or
-non-goal, or evidenced correctness/safety necessity. If an area has no mapping,
-remove it from the issue. The strategy must name the
+change area to a named acceptance criterion or explicit approved constraint or
+non-goal. Concrete evidence that another change is necessary creates a boundary
+finding; it does not authorize the planner to add that change. If an area has no
+mapping, remove it from the issue. The strategy must name the
 owning seam, expected test delta, focused oracle, trigger for broader checks,
 delivery mode, public feedback point when distinct, critical
 design-conformance checks, and why the evidence is sufficient. Chat and a
 remote tracker item are not substitutes for this current local record.
+The issue must also freeze an approved delivery envelope: fixed decisions,
+permitted implementation selections, exact change surface, explicit change
+budget, forbidden expansion, exact test allowance, and stop conditions.
 
 ## Readiness rules
 
@@ -65,6 +81,8 @@ Mark **Ready** only when:
   when broader checks become necessary;
 - non-goals prevent silent expansion.
 - every expected change area and test delta has a valid scope-authority mapping;
+- the delivery envelope is enumerable enough to detect an unauthorized file,
+  dependency, interface, schema, behavioural invariant, or test change;
 - any provisional design point exercised by the issue has explicit validating
   and invalidating evidence plus a bounded planning consequence.
 
@@ -84,29 +102,31 @@ directly from Planned, Draft, or Blocked to In Progress. A material change to
 the outcome, scope, dependencies, acceptance criteria, or oracle invalidates
 the Ready gate; return the issue to Draft or Blocked and review it again.
 
-Readiness does not grant production authority. Record whether the user approved
-this issue or a parent destination whose outcome, boundaries, verification
-budget, and stop conditions cover it. Leave an unauthorized issue Ready; do not
-move it to In Progress.
+Readiness does not grant production authority. Approval binds to the recorded
+issue revision. Parent approval authorizes only the Ready issue IDs and revisions
+present at approval unless the user explicitly approved a bounded program
+envelope permitting later issues. Newly planned or materially revised issues are
+not automatically authorized. Leave an unauthorized issue Ready; do not move it
+to In Progress.
 
 ## Artifact and external actions
 
-Use the repository's local issue convention. Otherwise create one canonical file
-per issue under `docs/plans/<plan-slug>/issues/` only when lifecycle-artifact
-writes are explicitly authorized for the current branch,
-maintain the ordered issue index in the parent `README.md`, and maintain only the
-active plan plus Ready frontier in `docs/agent/index.md`.
+Create one canonical file per issue under
+`.agent/plans/<plan-slug>/issues/` and maintain the ordered issue
+table, Ready frontier, Not yet specified decisions, and next action in
+`.agent/plans/<plan-slug>/PLAN.md`.
 
-Assign stable zero-padded issue IDs and direct parent and dependency links. The
-issue file is authoritative for its lifecycle and delivery evidence; the parent
-plan and workflow index are concise navigation views. Persist every state
-transition in the issue's lifecycle history.
+Assign stable zero-padded issue IDs in creation order and direct parent and
+dependency links. IDs are identity, not priority; change execution order only in
+`PLAN.md`. The issue file is authoritative for its lifecycle and delivery
+evidence; the plan table is navigation, not a duplicate specification. Persist
+every state transition in the issue's lifecycle history.
 
-Product or implementation write authority does not authorize these artifacts.
-When branch-local lifecycle artifacts are not explicitly authorized, return the
-issue inline or use the separately authorized planning location.
+Create only vertical issues inside the approved plan. Report adjacent ideas and
+scope-creep discoveries to the user inline; do not persist them as future work,
+a backlog, or another issue.
 
-Create external tracker issues only as optional coordination mirrors after the local issue exists and only when explicitly authorized. Put the local artifact path or repository link in the mirror; do not let the remote body become a divergent second specification. If branch-local lifecycle-artifact writes are not authorized, return Ready issue drafts in chat or use the separately authorized planning location.
+Create external tracker issues only as optional coordination mirrors after the local issue exists and only when explicitly authorized. Put the local artifact path in the mirror; do not let the remote body become a divergent second specification.
 
 ## Completion
 
@@ -118,4 +138,4 @@ Return control after this skill's bounded responsibility ends. Set **Control** t
 
 End with: **Stage result** (`Planning ready` or `Planning blocked`); **Destination status** (`In Progress`, `Paused`, or `Complete`); **Control** (`driver`, `user`, or `none`); **To** (one skill, `direct`, `scheduled`, `user`, or `none`); **Artifact** (local issue path or inline result); **Evidence**; **Ready frontier**; **Not yet specified**; **Blocking item** (one precise prerequisite and owner, or `none`); and exactly one **Next action** (or `none` only when the destination is complete). Preserve issue lifecycle state separately and reserve destination `Complete` for a passed terminal audit.
 
-Then add **Continuation artifact** (path, `inline`, or `none`) and **Next prompt**. Keep `Next action` terse. For a skill, `direct`, or `scheduled` route, provide a compact launcher naming the authorized destination, repository, authoritative artifact, and stop conditions; the active plan driver consumes it without user intervention when executable, or at the recorded wake-up when scheduled. For `user`, provide one precise decision or evidence request. For `none`, write `Next prompt: none`. Persist the launcher at the parent plan's `handoffs/next.md` and link it from `docs/agent/index.md` only when lifecycle-artifact writes are explicitly authorized for the current branch; otherwise keep it inline or use the separately authorized planning location. Keep it under 1,500 characters and link authoritative artifacts rather than replaying them.
+Then add **Continuation artifact** (`PLAN.md`, `inline`, or `none`) and **Next prompt**. Keep `Next action` terse. For a skill, `direct`, or `scheduled` route, provide a compact launcher naming the authorized destination, repository, authoritative artifact, and stop conditions; the active plan driver consumes it without user intervention when executable, or at the recorded wake-up when scheduled. For `user`, provide one precise decision or evidence request. For `none`, write `Next prompt: none`. Record the active launcher in `PLAN.md`'s next-action section. Do not create a separate handoff file. Keep it under 1,500 characters and link authoritative artifacts rather than replaying them.

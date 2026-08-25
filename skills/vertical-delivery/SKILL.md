@@ -21,22 +21,31 @@ Before editing, confirm:
 - an approved verification budget naming one seam, the expected test delta, and
   the trigger for broader checks;
 - user authorization of this issue or a parent destination whose agreed boundary
-  still covers it; and
+  still covers this exact issue revision; and
 - a change-to-criterion map covering every expected production, test,
   configuration, and task-branch artifact change area.
+- a frozen delivery envelope naming fixed decisions, permitted implementation
+  selections, exact change surface and budget, forbidden expansion, exact test
+  allowance, and stop conditions; and
+- when delegated, an explicit judgment-class dispatch using `gpt-5.6-sol` at
+  `medium` effort. A missing or different model/effort pair blocks production
+  editing; the default evidence-worker configuration is not sufficient.
 
 Treat requests, backlog entries, and conversational handoffs as candidate input,
 not readiness authority. If the durable issue is absent, stale, Draft, or
 Blocked, make no production edit. Route unresolved design to
 `$solution-design`, issue boundaries or a missing gate to `$issue-planning`, or
-one named uncertainty to `$spike`. Do not stop for a reversible local choice
-that preserves the issue's contracts, scope, and oracle; choose the smallest
-conventional option and record it.
+one named uncertainty to `$spike`. An implementation selection is agent-owned
+only when the available choices are observationally equivalent under the
+acceptance criteria, remain inside the approved change surface, and do not alter
+a public contract, persisted data, failure policy, authorization, concurrency,
+external side effect, operational behaviour, dependency set, or verification
+contract. Reversibility alone is insufficient. Choose the smallest conventional
+option only inside that boundary.
 
-Before the first production edit, persist **Ready → In Progress** in the
-explicitly authorized lifecycle-artifact location and update its parent-plan
-index. Product-write authority does not authorize those files on the ticket
-branch. Work on only that issue.
+Before the first production edit, persist **Ready → In Progress** in the local
+issue and update its ordered row and current frontier in the parent `PLAN.md`.
+Work on only that issue.
 
 For a substantial issue, start from the issue and linked authoritative artifacts in a focused fresh context. Use `$context-handoff` only when related state cannot be reconstructed cheaply from those sources.
 
@@ -45,7 +54,8 @@ For a substantial issue, start from the issue and linked authoritative artifacts
 1. Inspect the relevant implementation and tests.
 2. Map each intended production, test, configuration, and task-branch artifact
    change area to a named acceptance criterion, explicit approved constraint or
-   non-goal, or evidenced correctness/safety necessity. Remove any unmapped area.
+   non-goal. Remove any unmapped area. Concrete evidence that an unmapped change
+   is necessary creates a boundary blocker; it does not authorize the change.
 3. Identify any design decision marked **Provisional for slice**, the evidence this issue must produce, and the result that would validate or invalidate it.
 4. Choose the cheapest reliable verification mode:
    - test-first when behaviour is stable and automatable;
@@ -56,11 +66,17 @@ For a substantial issue, start from the issue and linked authoritative artifacts
    valid when an existing oracle is sufficient. When tests will change, state the behavioural invariant and oracle, then use
    `$test-ownership` before editing tests to select the owning layer and
    canonical suite.
+   The recorded suites, files, invariants, and maximum cases are a ceiling, not a
+   starting point. Do not add coverage because code changed, nearby coverage is
+   weak, or a convention or reviewer suggests it.
 6. When the Ready issue declares `Change/evolution policy: hard-cut`, compose
    `$hard-cut` throughout delivery and stop if its boundary inventory exposes a
    migration or compatibility dependency.
 7. Prefer existing interfaces, patterns, and infrastructure only to choose
    among in-scope implementations. Consistency never authorizes additional work.
+8. When the issue records touched backend seams, compose
+   `$backend-change-control` and preserve its existing-versus-approved contract
+   table throughout delivery.
 
 ## Implement and verify
 
@@ -78,6 +94,13 @@ For a substantial issue, start from the issue and linked authoritative artifacts
    as non-blocking follow-ups and do not expand the diff for them.
 9. Surface material implementation trade-offs or design deviations for human or peer review when task risk warrants it.
 10. Summarize successful checks compactly; retain full output only for failures or evidence that materially affects the next decision.
+
+Delivery is closed-world. Evidence may validate, invalidate, or narrow the
+approved envelope; it cannot add a requirement, acceptance criterion, decision,
+issue, production capability, test invariant, or verification seam. Record a
+newly discovered need as a proposal or boundary blocker and stop when it is
+required for correctness. Test failures outside the approved invariant are
+diagnostic evidence, not authority to repair code or expand coverage.
 
 Do not ask the user about ordinary investigation, reversible implementation
 choices, failing checks, or adjacent discoveries. Continue autonomously within
@@ -118,12 +141,13 @@ when the declared behaviour is already correct and safe.
 
 ## Task management
 
-Update the standalone canonical issue, its lifecycle history, the parent-plan
-index, and the link-only `docs/agent/index.md` only in the explicitly authorized
-lifecycle-artifact location, with status, exact verification
-results, decisions, design-evidence state changes, design deviations, invalidated
-assumptions, and follow-ups. Re-evaluate the next Ready frontier when the slice
-validates or invalidates a decision that later work depends on.
+Update the canonical issue and its lifecycle history with status, exact
+verification results, in-scope decisions, design-evidence state changes,
+design deviations, and invalidated assumptions. Update only the ordered issue
+row, shared planning consequence, frontier, and next action in `PLAN.md`.
+Re-evaluate the next Ready frontier when the slice validates or invalidates a
+decision that later work depends on. Report adjacent follow-ups inline and do
+not persist them.
 Mark **Verified** only when acceptance criteria, the stated oracle, applicable
 design-conformance checks, and complete diff inspection pass. Do not mark an
 issue Done merely because implementation stopped; Done means the parent plan no
@@ -141,6 +165,9 @@ Report files changed, behaviour proved, design conformance or deviations, exact 
 
 Return control after this issue's bounded delivery responsibility ends. Set **Control** to `driver` when **To** is an executable authorized route or authorized scheduled wake-up, `user` only when a required user decision or permission prevents safe continuation, or `none` when the destination is complete and no onward route remains. The active plan driver may dispatch review or the next Ready issue in a fresh worker and continue the overarching task; this delivery worker must stop after its one issue.
 
+Record the effective model and effort in the evidence return so the plan driver
+can reject a delivery performed by an incorrectly classified worker.
+
 End with: **Stage result** (`Issue verified`, `Issue blocked`, or `Replan required`); **Destination status** (`In Progress`, `Paused`, or `Complete`); **Control** (`driver`, `user`, or `none`); **To** (one skill, `direct`, `scheduled`, `user`, or `none`); **Artifact** (local issue path or inline result); **Evidence**; **Blocking item** (one precise prerequisite and owner, or `none`); and exactly one **Next action** (or `none` only when the destination is complete). Preserve issue lifecycle state separately and reserve destination `Complete` for a passed terminal audit.
 
-Then add **Continuation artifact** (path, `inline`, or `none`) and **Next prompt**. Keep `Next action` terse. For a skill, `direct`, or `scheduled` route, provide a compact launcher naming the authorized destination, repository, authoritative artifact, and stop conditions; the active plan driver consumes it without user intervention when executable, or at the recorded wake-up when scheduled. For `user`, provide one precise decision or evidence request. For `none`, write `Next prompt: none`. Persist the launcher at the parent plan's `handoffs/next.md` and link it from `docs/agent/index.md` only when lifecycle-artifact writes are explicitly authorized for the current branch; otherwise keep it inline or use the separately authorized planning location. Keep it under 1,500 characters and link authoritative artifacts rather than replaying them.
+Then add **Continuation artifact** (`PLAN.md`, `inline`, or `none`) and **Next prompt**. Keep `Next action` terse. For a skill, `direct`, or `scheduled` route, provide a compact launcher naming the authorized destination, repository, authoritative issue, and stop conditions; the active plan driver consumes it without user intervention when executable, or at the recorded wake-up when scheduled. For `user`, provide one precise decision or evidence request. For `none`, write `Next prompt: none`. Record the active launcher in `PLAN.md`'s next-action section. Do not create a separate handoff file. Keep it under 1,500 characters and link authoritative artifacts rather than replaying them.

@@ -10,6 +10,9 @@ Check whether individually verified slices form the intended complete behaviour 
 ## Independence and proportionality
 
 - Start in a fresh context that did not implement the feature. Review actual artifacts and repository state, not the implementer's narrative.
+- Require an explicit judgment-class dispatch using `gpt-5.6-sol` at `medium`
+  effort. A missing or different pair blocks review. This remains true when the
+  reviewer also runs or verifies an end-to-end oracle.
 - Confirm material slices have passed `$code-review` or record the missing review evidence.
 - Add an independent reviewer or specialist oracle for security, permissions, money, migrations, concurrency, major architecture, or similarly consequential risk when available and proportionate.
 - Skip this skill when one small slice has no meaningful cross-slice or operational integration risk.
@@ -79,11 +82,10 @@ approved feature behaviour. Existing consistency or a general maintenance risk
 alone is not finding authority. Never promote an explicit non-goal into a
 finding for symmetry, preservation, completeness, or future-proofing.
 
-When review-artifact writes are explicitly authorized for the current branch and no repository convention exists,
-have the plan driver store the returned result under the active parent plan's
-`reviews/integration.md`, link it from the parent design and local issue set,
-and update only disposition, frontier, and next action in
-`docs/agent/index.md`.
+The reviewer returns its report inline. After the review context ends, have the
+plan driver record the integrated disposition, findings, accepted risks,
+evidence, and reviewed surface in `PLAN.md`, updating affected issue review state
+only where necessary. Do not create a separate integration-review file.
 
 ## Verification and disposition
 
@@ -93,10 +95,8 @@ Run proportionate end-to-end checks when authorized and available. Summarize suc
 - **Ready with accepted risks:** explicit non-blocking risks remain;
 - **Not ready:** one or more concrete blockers remain.
 
-After the review context ends, have the plan driver update the review artifact,
-parent-plan index, affected issue lifecycle records, and link-only workflow
-index only when lifecycle-artifact writes are explicitly authorized for the
-current branch. Route only already-authorized in-scope fixes to
+After the review context ends, have the plan driver update `PLAN.md` and affected
+issue lifecycle records. Route only already-authorized in-scope fixes to
 `$vertical-delivery`; route a Boundary blocker to the user as a separate scope
 decision. Never amend a Ready issue or route a Follow-up directly to
 planning, design, delivery, or a spike. Boundary expansions, new criteria, and
@@ -112,4 +112,4 @@ Return control after this independent review responsibility ends. Set **Control*
 
 End with: **Stage result** (`Review approved`, `Review findings`, or `Review blocked`); **Destination status** (`In Progress`, `Paused`, or `Complete`); **Control** (`driver`, `user`, or `none`); **To** (one skill, `direct`, `scheduled`, `user`, or `none`); **Artifact** (local review path or inline result); **Evidence**; **Blocking item** (one precise prerequisite and owner, or `none`); and exactly one **Next action** (or `none` only when the destination is complete). Reserve destination `Complete` for a passed terminal audit.
 
-Then add **Continuation artifact** (path, `inline`, or `none`) and **Next prompt**. Keep `Next action` terse. For a skill, `direct`, or `scheduled` route, provide a compact launcher naming the authorized destination, repository, authoritative artifact, and stop conditions; the active plan driver consumes it without user intervention when executable, or at the recorded wake-up when scheduled. For `user`, provide one precise decision or evidence request. For `none`, write `Next prompt: none`. Persist the launcher at the parent plan's `handoffs/next.md` and link it from `docs/agent/index.md` only when lifecycle-artifact writes are explicitly authorized for the current branch; otherwise keep it inline or use the separately authorized planning location. Keep it under 1,500 characters and link authoritative artifacts rather than replaying them.
+Then add **Continuation artifact** (`PLAN.md`, `inline`, or `none`) and **Next prompt**. Keep `Next action` terse. For a skill, `direct`, or `scheduled` route, provide a compact launcher naming the authorized destination, repository, authoritative `PLAN.md`, and stop conditions; the active plan driver consumes it without user intervention when executable, or at the recorded wake-up when scheduled. For `user`, provide one precise decision or evidence request. For `none`, write `Next prompt: none`. The plan driver records the active launcher in `PLAN.md`'s next-action section after the review context ends. Do not create a separate handoff file. Keep it under 1,500 characters and link authoritative artifacts rather than replaying them.

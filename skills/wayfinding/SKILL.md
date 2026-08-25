@@ -30,18 +30,11 @@ scenario-level answer can resolve several items. A packet is a conversation
 shape, not a new durable artifact or lifecycle stage, and it must not include
 items with unsettled prerequisites.
 
-Use the repository's planning convention when available. Otherwise maintain
-`docs/plans/<name>/wayfinding/map.md`, store durable decisions once in the
-parent plan's `decisions/` directory, and link the active plan from
-`docs/agent/index.md` only when lifecycle-artifact writes are explicitly
-authorized for the current branch. The map and project
-index are indexes: link evidence and decisions instead of restating them.
+Maintain the decision map, established evidence, current frontier, and next action directly
+in `.agent/plans/<name>/PLAN.md`. Replace superseded map state after preserving
+its current consequences; do not create separate map or decision files.
 Create remote tracker items only as optional coordination mirrors after the
 local artifacts exist and only when explicitly authorized.
-
-Product or implementation write authority does not authorize these artifacts.
-Without explicit branch-level lifecycle-artifact authority, return the map
-inline or use a separately authorized planning location.
 
 ## Resolve the frontier
 
@@ -64,4 +57,4 @@ Return control after this skill's bounded responsibility ends. Set **Control** t
 
 End with: **Stage result** (`Map ready` or `Map blocked`); **Destination status** (`In Progress`, `Paused`, or `Complete`); **Control** (`driver`, `user`, or `none`); **To** (one skill, `direct`, `scheduled`, `user`, or `none`); **Artifact** (local map path or inline result); **Evidence**; **Decision frontier**; **Not yet specified**; **Blocking item** (one precise prerequisite and owner, or `none`); and exactly one **Next action** (or `none` only when the destination is complete). Reserve destination `Complete` for a passed terminal audit.
 
-Then add **Continuation artifact** (path, `inline`, or `none`) and **Next prompt**. Keep `Next action` terse. For a skill, `direct`, or `scheduled` route, provide a compact launcher naming the authorized destination, repository, authoritative artifact, and stop conditions; the active plan driver consumes it without user intervention when executable, or at the recorded wake-up when scheduled. For `user`, provide one precise decision or evidence request. For `none`, write `Next prompt: none`. Persist the launcher at the parent plan's `handoffs/next.md` and link it from `docs/agent/index.md` only when lifecycle-artifact writes are explicitly authorized for the current branch; otherwise keep it inline or use the separately authorized planning location. Keep it under 1,500 characters and link authoritative artifacts rather than replaying them.
+Then add **Continuation artifact** (`PLAN.md`, `inline`, or `none`) and **Next prompt**. Keep `Next action` terse. For a skill, `direct`, or `scheduled` route, provide a compact launcher naming the authorized destination, repository, authoritative artifact, and stop conditions; the active plan driver consumes it without user intervention when executable, or at the recorded wake-up when scheduled. For `user`, provide one precise decision or evidence request. For `none`, write `Next prompt: none`. Record the active launcher in `PLAN.md`'s next-action section when a plan exists; otherwise keep it inline. Do not create a separate handoff file. Keep it under 1,500 characters and link authoritative artifacts rather than replaying them.
