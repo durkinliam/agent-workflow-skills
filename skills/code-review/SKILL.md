@@ -15,13 +15,15 @@ Establish before reviewing:
 - base and head commit or an equivalent immutable diff boundary;
 - parent design, issue, acceptance criteria, decisions, and non-goals;
 - claimed verification evidence and skipped checks; and
-- an explicit judgment-class dispatch using `gpt-5.6-sol` at `medium` effort.
+- when delegated, an explicit judgment-class dispatch naming the selected model and setting a
+  supported reasoning effort no higher than `medium`.
 
-If the diff boundary, intended behaviour, or required model/effort pair cannot
+If the diff boundary, intended behaviour, or delegated model/effort settings cannot
 be established, report that as a blocker instead of reviewing a moving,
-reconstructed, or incorrectly classified target. A review worker remains Sol at
-medium effort when it also runs or verifies the declared oracle; do not split
-the final verification disposition into a Luna evidence assignment.
+reconstructed, or incorrectly classified target. A review worker remains
+judgment-class when it also runs or verifies the declared oracle; do not split
+the final verification disposition into an evidence-only assignment. Any workers
+it delegates must also explicitly use reasoning effort no higher than `medium`.
 
 Start from a fresh context that did not implement the change. Context separation reduces trajectory bias; for security, permissions, money, migrations, concurrency, major architecture, or similarly consequential work, prefer an additional independent reviewer or specialist tool when available and proportionate.
 

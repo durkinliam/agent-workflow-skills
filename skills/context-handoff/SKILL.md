@@ -69,10 +69,12 @@ Before finishing:
 2. Confirm the next context can identify the authoritative intent and verification oracle without this conversation.
 3. Distinguish established facts from assumptions and implementer claims.
 4. Keep the handoff shorter than the sources it indexes.
-5. Confirm the execution class matches the work: use `gpt-5.6-sol` at `medium`
-   for implementation, review, decisions, or final disposition; use
-   `gpt-5.6-luna` at `xhigh` or bounded `max` only for non-writing evidence
-   work. Treat a combined review-and-oracle assignment as Sol review work.
+5. Confirm the execution class matches the work: judgment for implementation,
+   review, decisions, or final disposition; evidence only for bounded non-writing
+   work. Treat a combined review-and-oracle assignment as judgment-class review.
+   For delegation, name the selected model and explicitly set a supported effort
+   no higher than `medium`, including for any further workers. Preserve the
+   primary task's configured model and effort when no delegation occurs.
 
 When an active plan exists, compact established state into its `PLAN.md`, update
 the current issue when issue-local state changed, and record the launcher in the
@@ -84,7 +86,7 @@ A material decision belongs once in `PLAN.md`, not in the launcher.
 
 Return the compact handoff state to the active plan driver. For a delegated
 route, retain the execution class, model, reasoning effort, authority boundary,
-and stop condition; never route to Terra. If the route is authorized and
+and stop condition; preserve the delegation effort cap. If the route is authorized and
 unblocked, the driver starts the intended fresh worker without user intervention.
 If one user decision or permission is unavoidable after every independent route
 is evaluated, state what is established, explain why the answer is needed, and

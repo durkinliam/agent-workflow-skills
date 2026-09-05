@@ -10,9 +10,10 @@ Check whether individually verified slices form the intended complete behaviour 
 ## Independence and proportionality
 
 - Start in a fresh context that did not implement the feature. Review actual artifacts and repository state, not the implementer's narrative.
-- Require an explicit judgment-class dispatch using `gpt-5.6-sol` at `medium`
-  effort. A missing or different pair blocks review. This remains true when the
-  reviewer also runs or verifies an end-to-end oracle.
+- When delegated, require an explicit judgment-class dispatch naming the selected model and
+  setting a supported reasoning effort no higher than `medium`. Missing settings
+  or effort above the cap block review. This remains true when the reviewer also
+  runs or verifies an end-to-end oracle and applies to any workers it delegates.
 - Confirm material slices have passed `$code-review` or record the missing review evidence.
 - Add an independent reviewer or specialist oracle for security, permissions, money, migrations, concurrency, major architecture, or similarly consequential risk when available and proportionate.
 - Skip this skill when one small slice has no meaningful cross-slice or operational integration risk.

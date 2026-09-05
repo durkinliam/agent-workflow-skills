@@ -27,9 +27,11 @@ Before editing, confirm:
 - a frozen delivery envelope naming fixed decisions, permitted implementation
   selections, exact change surface and budget, forbidden expansion, exact test
   allowance, and stop conditions; and
-- when delegated, an explicit judgment-class dispatch using `gpt-5.6-sol` at
-  `medium` effort. A missing or different model/effort pair blocks production
-  editing; the default evidence-worker configuration is not sufficient.
+- when delegated, an explicit judgment-class dispatch naming the selected model
+  and setting a supported reasoning effort no higher than `medium`. Missing
+  settings or effort above the cap block production editing; evidence-only
+  authority is not sufficient. Apply the same effort cap explicitly to any
+  workers delegated from this context.
 
 Treat requests, backlog entries, and conversational handoffs as candidate input,
 not readiness authority. If the durable issue is absent, stale, Draft, or
