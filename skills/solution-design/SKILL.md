@@ -41,11 +41,18 @@ Design to the current decision horizon. Define only the product, system, and pro
 
 ## Shape material decisions
 
+An implementation selection is agent-owned only when its alternatives are
+observationally equivalent under the approved criteria, remain inside the
+approved change surface, and do not alter a public contract, persisted data,
+failure policy, authorization, concurrency, external side effect, operational
+behaviour, dependency set, or verification contract. Reversibility alone is
+insufficient.
+
 Classify each open point before asking the user:
 
 - discoverable fact: investigate it;
-- reversible local choice: choose the smallest conventional option and record it
-  only when consequential;
+- qualifying implementation selection: choose the smallest conventional option
+  within that boundary and record it only when consequential;
 - material product or hard-to-reverse trade-off: put it to the user;
 - uncertainty better answered by observable behaviour: route a bounded prototype,
   spike, or vertical slice.
@@ -69,8 +76,8 @@ rollback consequences.
 
 ## Workflow
 
-1. Surface the few open decisions whose answers materially change the next safe, expensive, or irreversible step. Resolve them through evidence, an agent-owned reversible default, a decision packet, or an empirical feedback slice.
-2. Separate established facts, user decisions, reversible defaults, assumptions, alternatives, and **Not yet specified** decisions. Record which future behaviour each deferred decision may block. Do not silently choose a material or irreversible trade-off that only the user can own.
+1. Surface the few open decisions whose answers materially change the next safe, expensive, or irreversible step. Resolve them through evidence, a qualifying implementation selection, a decision packet, or an empirical feedback slice.
+2. Separate established facts, user decisions, qualifying implementation selections, assumptions, alternatives, and **Not yet specified** decisions. Record which future behaviour each deferred decision may block. Do not silently choose a material or irreversible trade-off that only the user can own.
 3. Define the product view: user problem, observable outcome, success signal, workflow, constraints, and non-goals. Prefer a mockup or compact example when prose cannot establish alignment.
 4. Define only the system view causally required by the current approved
    frontier. Cover relevant boundaries, contracts, schemas, data flow,
@@ -89,7 +96,11 @@ rollback consequences.
 9. At a consequential commitment boundary, optionally request a fresh independent consult. Supply the proposed decision, outcome, constraints, evidence, relevant paths, alternatives, and the one question that could change the plan. Require exactly **proceed**, **change**, or **stop**, plus the decisive reason and largest remaining risk. Treat the result as advisory evidence; it does not transfer decision authority or approve a user-owned trade-off.
 10. Hand the approved current design to `$issue-planning`; do not write tactical implementation steps or production code. Return to this design when later evidence invalidates it or reaches a deferred decision.
 
-Use small diagrams, pseudocode, call trees, file-tree diffs, and contract examples when they communicate more efficiently than prose.
+Use small diagrams, pseudocode, call trees, file-tree diffs, and contract examples
+when they communicate more efficiently than prose. For a proposed change to an
+existing shape, a compact before/after diff of the call tree, state flow, or
+component tree can make the decision easier to review. Include only the context
+needed to understand the change; no visual is required when prose is clearer.
 
 ## Artifact
 
