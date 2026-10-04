@@ -1,0 +1,4 @@
+interface:
+  display_name: "Recurring Error Review"
+  short_description: "Find recurring mistakes and their smallest safeguards"
+  default_prompt: "Use $recurring-error-review to review these sessions for recurring mistakes and propose the smallest evidence-backed safeguards."

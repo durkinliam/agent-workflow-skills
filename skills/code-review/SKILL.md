@@ -64,6 +64,16 @@ future-proofing are not independent finding authority. Do not infer archival,
 retention, analytics, audit, restoration, reconciliation, observability, retry,
 migration, compatibility, historical-data, rollback, or operational requirements.
 
+Ask whether evidence can pass where it was collected while the approved
+behaviour fails at its declared destination. Follow concrete, relevant
+dependencies: for example, unavailable clean-checkout inputs, platform-sensitive
+identity, or an unproved real-input contract. Choose the smallest permitted
+observation that discriminates the failure path; do not demand unrelated
+environments or live operations. Distinguish observed failure from unproved
+claims. An acknowledged evidence limit is not itself a defect when the approved
+outcome is correspondingly bounded. Apply the finding authority and boundary
+rules below; this challenge grants no extra verification or mutation authority.
+
 Run proportionate focused checks when authorized and useful. Summarize successful output compactly; preserve details for failures and findings.
 
 ## Report findings

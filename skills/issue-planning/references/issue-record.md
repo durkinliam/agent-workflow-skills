@@ -20,6 +20,8 @@ announce its state.
 ## Parent plan and evidence
 - Plan: <link/path and revision or date>
 - Facts/contracts: <relevant files, tests, traces, or research>
+- Critical prerequisites: <evidence, unresolved dependency, or explicitly
+  provisional-for-slice; label offline evidence and destination assumptions>
 - Fixed decisions: <approved decisions this issue must preserve>
 - Permitted implementation selections: <observationally equivalent local choices
   the implementer may make, or none>
@@ -51,6 +53,8 @@ announce its state.
 - Expected test delta: <none, or exact suites/files and maximum cases permitted>
 - New test files: <exact maximum, normally zero>
 - Oracle: <exact command, test, observation, log/event, or visual check>
+- Verification allowance: <predictable timing and finite observations, deadline,
+  and stop condition within the proposed approval envelope, or not applicable>
 - Broader checks only if: <risk or evidence trigger; never merely because code changed>
 - Mode: <test-first | spike-then-test | implementation-then-test | manual/visual>
 - Public feedback point: <external behaviour to exercise, or same as oracle>

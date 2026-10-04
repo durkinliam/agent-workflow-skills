@@ -46,6 +46,22 @@ validate or invalidate it, and where the planning consequence will be recorded.
 Use `$spike` instead when the production behaviour or safe boundary is itself
 unknown. Implementation-as-evidence does not waive readiness.
 
+Before freezing the touched change and verification boundary, establish the
+critical prerequisites whose absence could defeat this issue's outcome. Use
+existing evidence or proportionate authorized read-only checks: for example,
+required clean-checkout inputs, directly affected assertions, actual external
+input shape, or current availability of the declared operational route. These
+are examples, not a checklist for every issue. Label offline evidence and
+destination assumptions; do not demand live proof for an intentionally offline
+outcome. Unresolved critical prerequisites block only affected issues, subject
+to the provisional-for-slice rules above.
+
+Include predictable verification needs in the proposed approval envelope, such
+as observed cache expiry and a finite readback allowance with a deadline and
+stop condition. Evidence does not authorize extra access, retries, cleanup,
+tests, or files. Record prerequisites and allowances in the existing issue
+evidence and verification fields, without a duplicate artifact.
+
 ## Issue format
 
 Use the repository's established format or the durable
