@@ -57,6 +57,10 @@ Classify each open point before asking the user:
 - uncertainty better answered by observable behaviour: route a bounded prototype,
   spike, or vertical slice.
 
+For material ambiguity, give one concrete scenario whose outcomes distinguish
+the plausible meanings. Resolve discoverable facts yourself and preserve
+already-explicit decisions; ask only about the remaining consequential choice.
+
 Group coupled human decisions that share one scenario into a bounded **decision
 packet**. A packet may resolve several branches together, but must not include a
 decision whose prerequisites remain unsettled. Present the scenario, viable
@@ -78,7 +82,7 @@ rollback consequences.
 
 1. Surface the few open decisions whose answers materially change the next safe, expensive, or irreversible step. Resolve them through evidence, a qualifying implementation selection, a decision packet, or an empirical feedback slice.
 2. Separate established facts, user decisions, qualifying implementation selections, assumptions, alternatives, and **Not yet specified** decisions. Record which future behaviour each deferred decision may block. Do not silently choose a material or irreversible trade-off that only the user can own.
-3. Define the product view: user problem, observable outcome, success signal, workflow, constraints, and non-goals. Prefer a mockup or compact example when prose cannot establish alignment.
+3. Define the product view: user problem, observable outcome, scoped completion destination, success signal, workflow, constraints, and non-goals. Prefer a mockup or compact example when prose cannot establish alignment.
 4. Define only the system view causally required by the current approved
    frontier. Cover relevant boundaries, contracts, schemas, data flow,
    authorization, failure semantics, compatibility, operations, rollout, or

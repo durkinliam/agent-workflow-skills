@@ -65,7 +65,9 @@ retention, analytics, audit, restoration, reconciliation, observability, retry,
 migration, compatibility, historical-data, rollback, or operational requirements.
 
 Ask whether evidence can pass where it was collected while the approved
-behaviour fails at its declared destination. Follow concrete, relevant
+behaviour fails at its declared destination. Compare the issue's outcome,
+environment and observation binding with actual evidence; source equality alone
+does not prove runtime, input or loader equivalence. Follow concrete, relevant
 dependencies: for example, unavailable clean-checkout inputs, platform-sensitive
 identity, or an unproved real-input contract. Choose the smallest permitted
 observation that discriminates the failure path; do not demand unrelated
@@ -105,13 +107,10 @@ or evidence references:
   correction crosses the approved issue boundary;
 - **No finding:** do not invent criticism to justify the review.
 
-For each finding state the scope authority, observed evidence, consequence, and
-smallest in-scope correction. Keep uncertainty explicit. Separate standards
-findings from intent findings even when one defect affects both. Do not promote
-an explicit non-goal into a finding for symmetry, preservation, completeness, or
-future-proofing. If correcting concrete incorrectness or unsafety would cross an
-explicit non-goal or issue boundary, return the evidence to the user as a
-separate scope decision rather than silently widening the issue.
+Include each finding's consequence and keep uncertainty explicit. Separate
+standards findings from intent findings even when one defect affects both. Do
+not promote an explicit non-goal into a finding for symmetry, preservation,
+completeness, or future-proofing.
 
 The reviewer returns its report inline. After the review context ends, have the
 plan driver record the disposition, findings, accepted risks, evidence, and
@@ -128,12 +127,10 @@ Return one disposition:
 - **Changes required:** at least one unaccepted in-scope Blocker, Material, or
   Minor finding or Boundary blocker remains.
 
-Route only an already-authorized in-scope fix to `$vertical-delivery`. Route a
-Boundary blocker to the user as a separate scope decision. Never
+Route only an already-authorized in-scope fix to `$vertical-delivery`. Never
 amend a Ready issue or route a follow-up suggestion directly to delivery,
-planning, design, or a spike. Boundary expansions, new criteria, and inferred
-requirements route to the user as separate decisions. Never modify code in this
-review context.
+planning, design, or a spike. New criteria and inferred requirements also need
+a separate user decision. Never modify code in this review context.
 
 After **Approve** or **Approve with accepted risks**, choose exactly one onward route from the canonical local state: the next Ready issue to `$vertical-delivery`; an exhausted frontier that still needs slicing to `$issue-planning`; a completed multi-slice feature with material integration risk to `$integration-review`; otherwise `none` with completion. Do not infer the route from the diff alone.
 
@@ -144,9 +141,8 @@ independent review before relying on approval again.
 ## Handoff
 
 Return the disposition, reviewed base/head, evidence, findings, blocker, route,
-next action, and compact launcher to the plan driver without writing files. After
-this read-only context ends, the driver persists them in the canonical issue and
-`PLAN.md`. If a Boundary blocker needs a user decision, state the protected
+next action, and compact launcher to the plan driver without writing files. The
+driver then persists that state in the issue and `PLAN.md`. If a Boundary blocker needs a user decision, state the protected
 criterion, concrete failure path, and smallest proposed expansion, then ask one
 precise question. Otherwise the driver continues with authorized fixes,
 integration review, or the next Ready issue without user intervention. Do not

@@ -56,6 +56,12 @@ destination assumptions; do not demand live proof for an intentionally offline
 outcome. Unresolved critical prerequisites block only affected issues, subject
 to the provisional-for-slice rules above.
 
+Bind the outcome and scoped destination to an observation that can distinguish
+success from the reported failure. Where an exact artifact-identity claim depends
+on runtime, inputs or loader behavior, establish those separately from source
+equality; missing critical evidence prevents that claim becoming Ready. Discover
+the repository's existing toolchain, wrapper, module and suite when relevant.
+
 Include predictable verification needs in the proposed approval envelope, such
 as observed cache expiry and a finite readback allowance with a deadline and
 stop condition. Evidence does not authorize extra access, retries, cleanup,
@@ -154,6 +160,8 @@ Persist the ordered issue list, dependency state, Ready frontier, Not yet
 specified items, blocker, route, next action, and compact launcher in `PLAN.md`
 and the canonical issues. If one user decision or authorization is required,
 state what is Ready, explain what the answer changes, and ask one precise
-question. Otherwise the plan driver dispatches the next authorized Ready issue
+question. For an already authorized multi-issue manifest, `$plan-delivery` owns
+continuation; newly created or revised issues are not implicitly covered.
+Otherwise the plan driver dispatches the next authorized Ready issue
 in a fresh worker without asking the user to invoke a prompt. Do not implement
 the issue in this planning context or print an internal routing block.

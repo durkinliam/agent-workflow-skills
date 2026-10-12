@@ -5,7 +5,8 @@ description: Implement and verify exactly one Ready vertical issue in a focused 
 
 # Vertical Delivery
 
-Deliver one observable behaviour and stop.
+Deliver one observable behaviour. The worker stops after that issue; a
+`$plan-delivery` driver continues the authorized multi-issue destination.
 
 ## Readiness gate
 
@@ -86,7 +87,11 @@ For a substantial issue, start from the issue and linked authoritative artifacts
 2. Avoid later issues, speculative abstractions, unrelated cleanup, and broad refactoring.
 3. Run the focused oracle immediately.
 4. Fix failures caused by the slice without broadening its outcome.
-5. Exercise the public feedback point when it is distinct from the automated test oracle.
+5. Recheck the approved outcome at its bound observation and destination. For a
+   public-page claim, use the normal URL and relevant observed cache state within
+   the finite readback allowance; saved data or a direct deployment URL alone
+   cannot prove that claim. Preserve offline or database-only boundaries; do not
+   add live checks, cache purges, retries or tests to enlarge the evidence.
 6. Run broader checks only when the approved trigger or observed risk warrants
    them, then inspect the complete diff.
 7. Compare observed results with every provisional decision exercised by the slice. Mark it **Validated by evidence**, **Invalidated**, or still **Provisional for slice**, cite the evidence, and record the planning consequence. Keep unrelated later decisions **Not yet specified**.
@@ -169,6 +174,7 @@ Persist the issue result, exact evidence, blocker, effective model and effort,
 route, next action, and compact launcher in the canonical issue and `PLAN.md`.
 If a user-owned boundary decision or permission is required, state what was
 proved, explain the concrete failure path or authority gap, and ask one precise
-question. Otherwise return control to the plan driver, which may dispatch review
-or the next Ready issue without user intervention. This worker stops after its
+question. Otherwise return control to the plan driver (`$plan-delivery` for an
+authorized multi-issue manifest), which consumes required review and continues
+the next covered Ready revision without user intervention. This worker stops after its
 one issue and does not print an internal routing block.

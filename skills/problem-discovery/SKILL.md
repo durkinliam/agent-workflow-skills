@@ -23,7 +23,9 @@ evidence supports. Stay read-only and solution-neutral.
 ## Investigate
 
 1. Read applicable repository instructions and sources of truth.
-2. Reproduce or inspect the symptom when safe and proportionate. Trace only the
+2. Choose an observation capable of detecting the reported symptom; a passing
+   adjacent check cannot rule it out. Reproduce or inspect it when safe and
+   proportionate; if unavailable, state the evidence limit. Trace only the
    code, tests, documentation, configuration, data lineage, runtime evidence,
    and recent changes needed to explain it.
 3. Compare actual behavior with every available expectation source: tests,

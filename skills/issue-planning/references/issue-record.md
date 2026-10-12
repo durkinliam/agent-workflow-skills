@@ -15,13 +15,15 @@ announce its state.
   issue revision, or pending>
 
 ## Outcome
-<One observable user, system, or operational behaviour.>
+<One observable behaviour and scoped completion destination; a distinguishing
+scenario when materially ambiguous.>
 
 ## Parent plan and evidence
 - Plan: <link/path and revision or date>
 - Facts/contracts: <relevant files, tests, traces, or research>
 - Critical prerequisites: <evidence, unresolved dependency, or explicitly
-  provisional-for-slice; label offline evidence and destination assumptions>
+  provisional-for-slice; relevant runtime, input and loader evidence; label
+  offline evidence and destination assumptions>
 - Fixed decisions: <approved decisions this issue must preserve>
 - Permitted implementation selections: <observationally equivalent local choices
   the implementer may make, or none>
@@ -52,7 +54,8 @@ announce its state.
 - Behavioural invariant: <implementation-independent claim being proved>
 - Expected test delta: <none, or exact suites/files and maximum cases permitted>
 - New test files: <exact maximum, normally zero>
-- Oracle: <exact command, test, observation, log/event, or visual check>
+- Oracle: <exact command or observation capable of detecting the target failure;
+  normal URL and relevant observed cache state for a public-page claim>
 - Verification allowance: <predictable timing and finite observations, deadline,
   and stop condition within the proposed approval envelope, or not applicable>
 - Broader checks only if: <risk or evidence trigger; never merely because code changed>

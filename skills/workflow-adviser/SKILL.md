@@ -13,6 +13,11 @@ Use the request and already-loaded skill descriptions. Do not inspect the reposi
 
 Test routes in this order:
 
+For an explicitly authorized multi-issue manifest, including a resumed one,
+recommend `$plan-delivery` before the single-outcome routes below. This does not
+apply to planning-only requests or approval of a destination without covered
+issue revisions.
+
 1. **direct** — one small, obvious, low-consequence outcome; relevant location
    and current behaviour can be established cheaply; the change can be bounded,
    reversible, and convention-following; no material design uncertainty exists;
