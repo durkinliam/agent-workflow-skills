@@ -45,13 +45,20 @@ and [T3 Code's Claude configuration](https://github.com/pingdotgg/t3code/blob/ma
 
 ## Compatibility
 
-The workflow instructions do not require a particular model, provider or
-operating system. Skill discovery, invocation, tool access and permissions
-depend on the agent and harness. Delivery needs repository access and the tools
-required for the agreed checks; independent review needs a fresh context without
-the implementation conversation. If the harness cannot provide that context,
-use a separate session and pass only the review brief, fixed diff, relevant
-sources and verification evidence.
+The skills use a portable format and can be installed for multiple agents.
+Understand, Plan and implementation are not tied to a particular model or
+operating system. Independent review has a specific requirement: **GPT-6 Astra
+(`gpt-6-astra`) at Extra High effort (`xhigh`)**. This applies to initial and
+correction reviews, including the review step required by Deliver. Work started
+with Claude or another implementation agent needs access to that reviewer to
+complete the workflow.
+
+Skill discovery, invocation, tool access and permissions depend on the agent
+and harness. Delivery needs repository access and the tools required for the
+agreed checks. Review needs the required model and effort in a fresh context
+without the implementation conversation. If the current harness cannot provide
+that combination, arrange a suitable separate session and pass only the review
+brief, fixed diff, relevant sources and verification evidence.
 
 Each skill's `agents/openai.yaml` supplies optional OpenAI UI metadata: a display
 name, short description and default prompt. The workflow instructions live in
@@ -112,13 +119,20 @@ them. Tests are useful evidence, not an automatic deliverable; mocks and green C
 establish only what they exercise. Report missing evidence and skipped checks,
 and never weaken checks to claim success.
 
-After verification, freeze the diff for Review in a fresh context without the
-implementation conversation. Supply the approved requirements, fixed diff,
-relevant sources and raw verification evidence. Review assesses behaviour and
-code quality separately; both must pass. Quality findings can require correction
-without a behavioural failure. The reviewer reports findings without editing;
-the delivery owner makes corrections, rechecks affected behaviour and obtains
-independent review of the corrected version.
+After verification, freeze the diff for Review using the model and effort
+specified under [Compatibility](#compatibility). For both initial and correction
+reviews, use a fresh context without the implementation conversation. For a
+spawned reviewer, explicitly set `fork_turns="none"`, `model="gpt-6-astra"` and
+`reasoning_effort="xhigh"`. Confirm the actual model, effort and context before
+reviewing. If the requirements cannot be met, report the limitation; do not
+silently substitute another model or effort, or treat self-review as independent.
+
+Supply the approved requirements, fixed diff, relevant sources and raw
+verification evidence. Review assesses behaviour and code quality separately;
+both must pass. Quality findings can require correction without a behavioural
+failure. The reviewer reports findings without editing; the delivery owner makes
+corrections, rechecks affected behaviour and obtains independent review of the
+corrected version with the same required settings.
 
 ## Working records
 
