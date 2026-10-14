@@ -1,8 +1,8 @@
 # Agent Workflow Skills
 
-Fourteen composable skills for evidence-backed software discovery, design,
-planning, delivery, and review. They are written for Codex and follow the
-portable Agent Skills `SKILL.md` format used by the Skills CLI.
+Four complementary skills for understanding, planning, delivering and reviewing
+software changes. They are written for Codex and use the portable Agent Skills
+`SKILL.md` format supported by the [Skills CLI](https://github.com/vercel-labs/skills).
 
 ## Install
 
@@ -12,56 +12,88 @@ List the available skills:
 npx skills add durkinliam/agent-workflow-skills --list
 ```
 
-Install every skill:
+Install all four skills for Codex:
 
 ```sh
-npx skills add durkinliam/agent-workflow-skills --all
+npx skills add durkinliam/agent-workflow-skills --skill '*' --agent codex
 ```
 
-Install one skill:
+Install one skill for Codex:
 
 ```sh
-npx skills add durkinliam/agent-workflow-skills --skill problem-discovery
+npx skills add durkinliam/agent-workflow-skills --skill understand --agent codex
 ```
+
+Installation defaults to the current project. Add `--global` to install across
+projects, or use `--agent` to select another supported agent. See the
+[CLI options](https://github.com/vercel-labs/skills#options) for details.
 
 ## Skills
 
 | Skill | Purpose |
 |---|---|
-| `workflow-adviser` | Select the cheapest safe route for a coding request. |
-| `wayfinding` | Map a large destination whose delivery route remains uncertain. |
-| `project-discovery` | Bound and investigate a greenfield project idea. |
-| `problem-discovery` | Identify the underlying problem behind an ambiguous symptom. |
-| `feature-discovery` | Map existing feature paths, contracts, seams, and risks. |
-| `spike` | Resolve one important uncertainty with bounded evidence. |
-| `solution-design` | Turn intent and evidence into a reviewable solution design. |
-| `issue-planning` | Create an ordered, independently verifiable vertical frontier. |
-| `vertical-delivery` | Implement and verify exactly one Ready vertical issue. |
-| `context-handoff` | Transfer durable state to a fresh context or owner. |
-| `code-review` | Independently review a fixed diff without implementing fixes. |
-| `integration-review` | Review multiple verified slices as one coherent feature. |
-| `hard-cut` | Remove an obsolete internal contract when a hard cut is approved. |
-| `test-ownership` | Assign each behavioural invariant to one canonical test layer. |
+| [understand](skills/understand/SKILL.md) | Clarify intent, investigate evidence and resolve the next important uncertainty. |
+| [plan](skills/plan/SKILL.md) | Agree a bounded change, meaningful verification and a completion destination. |
+| [deliver](skills/deliver/SKILL.md) | Implement authorized work, verify its outcome and obtain independent review. |
+| [review](skills/review/SKILL.md) | Assess a fixed diff for approved behaviour and code quality in a fresh context. |
 
-Each skill's complete activation guidance and operating contract is in its
-`skills/<name>/SKILL.md` file.
+Each linked `SKILL.md` contains the full activation guidance and instructions.
 
-## Scope firewall
+## Workflow
 
-The skills treat an approved outcome and its acceptance criteria as delivery
-authority. Every production, test, configuration, and task-branch artifact
-change must map to a named acceptance criterion, an explicit approved constraint
-or non-goal, or demonstrated correctness or safety necessity of the approved
-behaviour. Conventions select among in-scope implementations; preservation,
-consistency, completeness, symmetry, and future-proofing do not create scope.
+Enter at the stage the available evidence supports and skip work already
+established. An unclear symptom starts with Understand; a known outcome needing
+an approach starts with Plan; approved work can start or resume with Deliver.
+A fixed diff can go directly to Review. Read-only and planning-only requests
+stop at their requested destination.
 
-Blocking review findings must name that authority, demonstrate an observable
-failure or concrete executable failure path, and identify the smallest in-scope
-correction. Other observations are non-blocking follow-ups requiring a separate
-user decision. A demonstrated incorrect or unsafe outcome remains blocking when
-its smallest correction crosses the boundary, but the reviewer still cannot
-amend the Ready issue. Product-write authority does not authorize lifecycle
-artifacts on the current branch.
+Use the prompt, repository instructions, code and documents to establish intent.
+Ask focused questions only where evidence cannot settle it, starting with the
+decision that unlocks dependent answers. Investigate technical unknowns or defer
+them explicitly until the step that needs the answer.
+
+## Approval and scope
+
+Agree the observable outcome, boundaries, verification and completion destination
+before production edits, unless existing instructions already cover them.
+Readiness is distinct from permission. Preserve explicit user limits and
+unrelated changes; routine implementation choices within the agreement do not
+need new approval.
+
+New behaviour, changed contracts, wider access or a changed completion standard
+needs a new decision. Report adjacent ideas without adding them to scope.
+Continue authorized work through its destination, stopping for a real authority,
+evidence, access or decision gap, or an invalidated boundary. Publication, merge
+and rollout need authority covering those actions.
+
+## Verification and review
+
+Plan verification around observations that distinguish the intended result from
+plausible failure. Use real inputs and interfaces where the claim depends on
+them. Tests are useful evidence, not an automatic deliverable; mocks and green CI
+establish only what they exercise. Report missing evidence and skipped checks,
+and never weaken checks to claim success.
+
+After verification, freeze the diff for Review in a fresh context without the
+implementation conversation. Supply the approved requirements, fixed diff,
+relevant sources and raw verification evidence. Review assesses behaviour and
+code quality separately; both must pass. Quality findings can require correction
+without a behavioural failure. The reviewer reports findings without editing;
+the delivery owner makes corrections, rechecks affected behaviour and obtains
+independent review of the corrected version.
+
+## Working records
+
+A small plan can stay in chat. Split implementation into independently
+verifiable issues when its expected working context needs more room for code,
+verification and debugging. Complexity alone does not require separate issues,
+and there is no fixed token threshold.
+
+Use existing repository conventions for durable coordination. Otherwise, keep
+useful records in ignored `.agent/plans/<name>/PLAN.md`, following the
+[working record format](skills/plan/references/records.md). Keep decisions, source
+links, evidence and next actions concise. Do not commit local plans, create extra
+trackers or delete previous records without permission.
 
 ## License
 
