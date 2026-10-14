@@ -10,10 +10,16 @@ and whether its code is clear and maintainable. Both must pass.
 
 ## Use an independent context
 
-Start a fresh session or agent without the implementation conversation, prior
-reasoning, an implementer's defence, or an expected verdict. A role change inside
-the same conversation is not independence. If a suitable fresh context is
-unavailable, report the limitation; do not call self-review independent.
+Use GPT-6 Astra (`gpt-6-astra`) at Extra High effort (`xhigh`) for initial and
+correction reviews. Start a fresh session or agent without the implementation
+conversation, prior reasoning, an implementer's defence, or an expected verdict.
+For a spawned reviewer, explicitly set `fork_turns="none"`,
+`model="gpt-6-astra"` and `reasoning_effort="xhigh"`.
+
+Confirm the actual model, effort and context before reviewing. If they do not
+meet these requirements, report the limitation so delivery can arrange a suitable
+reviewer; do not silently substitute another model or effort. A role change inside
+the same conversation is not independence; do not call self-review independent.
 
 Receive only the authoritative brief (approved outcome, acceptance criteria,
 constraints and non-goals), a fixed base/head or equivalent captured diff,

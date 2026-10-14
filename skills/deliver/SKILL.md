@@ -56,11 +56,18 @@ through model calls. Do not create a goal or extra tracker to continue execution
 
 ## Review and finish
 
-After verification, freeze the diff and send it to Review in a fresh context
-without the implementation conversation. Supply the approved outcome, criteria,
-constraints, repository sources and raw verification evidence, not a preferred
-verdict or explanation defending the implementation. For multiple issues, agree
-a coherent review boundary that also checks their combined behaviour.
+After verification, freeze the diff and send it to Review using GPT-6 Astra
+(`gpt-6-astra`) at Extra High effort (`xhigh`) in a fresh context without the
+implementation conversation. For a spawned reviewer, explicitly set
+`fork_turns="none"`, `model="gpt-6-astra"` and `reasoning_effort="xhigh"`.
+Use these settings for initial and correction reviews. If the required model,
+effort or fresh context is unavailable, report the limitation rather than
+silently substituting or treating self-review as independent.
+
+Supply the approved outcome, criteria, constraints, repository sources and raw
+verification evidence, not a preferred verdict or explanation defending the
+implementation. For multiple issues, agree a coherent review boundary that also
+checks their combined behaviour.
 
 The reviewer reports findings; implementation fixes them. Recheck affected
 behaviour and have an independent reviewer assess corrections against the fixed
