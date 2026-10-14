@@ -40,8 +40,16 @@ Check each approved outcome, acceptance criterion and constraint. Follow relevan
 paths through the affected interfaces and consumers; for a multi-issue change,
 check that the pieces work together.
 
+Check that test changes provide meaningful evidence or regression protection,
+with expectations grounded independently of the implementation's output. Assess
+the test-first default using available execution evidence; a final diff alone
+cannot establish sequence. Check the justification for exceptions and for edits
+to assertions, fixtures, snapshots or tolerances. Later tests can be worthwhile;
+do not reject them solely for their timing or demand tests for their own sake.
+
 Examine what verification actually proves. A successful command, mock, source
-match or green CI result can coexist with incorrect user-visible behaviour.
+match, passing test suite or green CI result can coexist with incorrect
+user-visible behaviour. Passing tests alone do not establish the agreed outcome.
 Check the necessary environment, inputs and observation. Reproduce a focused
 check when permitted and useful. Distinguish an observed defect from missing
 evidence, and preserve any deliberately limited completion destination.

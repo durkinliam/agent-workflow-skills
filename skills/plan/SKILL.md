@@ -27,11 +27,17 @@ experiment, observation and decision it enables before treating it as delivery.
 Agree verification during planning, not after the code is written. For each
 claim, identify an observation that could distinguish the intended behaviour
 from a plausible failure. Establish the necessary environment, real inputs and
-interfaces, existing checks, and evidence limits. Specify useful test changes
-only when needed to prove an agreed claim. Prefer an existing owning suite;
-do not add tests for their own sake or duplicate coverage without a distinct
-purpose. A mocked boundary supports the simulated contract, not a claim that
-the real integration works. Green CI establishes only what its checks exercise.
+interfaces, existing checks, and evidence limits. Specify test changes only when
+they provide meaningful evidence or regression protection. Prefer an existing
+owning suite; do not add tests for their own sake or duplicate coverage without
+a distinct purpose. Derive expected results from the agreed behaviour, and plan
+worthwhile tests before the corresponding production changes by default. Explain
+known exceptions; discoveries during delivery may justify others.
+
+Passing tests do not by themselves establish that the code works as expected.
+A mocked boundary supports the simulated contract, not a claim that the real
+integration works. Identify what tests and green CI leave unverified and how the
+agreed outcome will be observed within the authorized scope.
 
 If the verification approach is unknown, investigate or agree an experiment.
 Missing essential evidence prevents claiming completion. Preserve deliberately

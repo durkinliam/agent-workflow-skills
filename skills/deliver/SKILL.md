@@ -22,6 +22,26 @@ result through an authorized readback or report the gap.
 
 ## Implement and verify
 
+By default, write or update worthwhile tests against the agreed expected
+behaviour before the corresponding production change, and run them first.
+For a bug fix or new behaviour, establish where practical that the test exposes
+the relevant defect or missing behaviour; an unrelated setup failure is not
+that evidence. Behaviour-preserving changes may legitimately pass before and
+after. Add tests only for meaningful evidence or regression protection, using
+the existing owning suite where practical.
+
+Justified exceptions include bounded exploration, a later-discovered edge case,
+or correction of an incorrect test. Explain why the test comes later and the
+independent basis for its expected result, such as an agreed requirement,
+documented contract or reference calculation. A later test may protect behaviour
+the code already handles. When a discovery requires a production correction,
+write the worthwhile test before that correction by default. Existing scope and
+approval boundaries still apply; an exception does not itself require approval.
+
+Do not derive expectations merely from the implementation's output, or change
+assertions, fixtures, snapshots or tolerances just to make tests pass. Justify
+test edits against the expected behaviour independently of the implementation.
+
 Make the smallest clear implementation of the agreed behaviour. Use plain,
 accurate names and clear responsibilities. Question a third occurrence of the
 same logic; extract only when sharing improves clarity. Avoid forwarding-only
@@ -30,9 +50,10 @@ affected by the change. Code quality is part of acceptance alongside behaviour.
 
 Run the agreed checks at the boundary they are meant to prove. Inspect actual
 results, not merely exit codes or green CI. Use real inputs and interfaces where
-the approved claim depends on them. Identify what mocks or offline fixtures
-leave unverified. Do not add tests simply because code changed, or weaken a check
-to make it pass. Put needed coverage in the existing owning suite where practical.
+the approved claim depends on them. Passing tests alone do not prove that the
+code works as expected. Identify what tests, mocks or offline fixtures leave
+unverified and gather the evidence needed for the agreed outcome. Do not weaken
+a check to make it pass.
 
 Fix in-scope failures and code-quality problems. If implementation reveals that
 the approved observation cannot prove the outcome, make the evidence gap explicit
