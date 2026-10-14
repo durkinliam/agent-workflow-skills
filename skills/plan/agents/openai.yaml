@@ -1,0 +1,4 @@
+interface:
+  display_name: "Plan"
+  short_description: "Agree a bounded change and meaningful verification"
+  default_prompt: "Use $plan to agree this change and its verification, splitting issues only when implementation context requires it."

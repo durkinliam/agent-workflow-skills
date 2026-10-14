@@ -1,0 +1,4 @@
+interface:
+  display_name: "Understand"
+  short_description: "Clarify intent and investigate software behaviour"
+  default_prompt: "Use $understand to establish the intended outcome, investigate the evidence, and ask the next useful clarification."

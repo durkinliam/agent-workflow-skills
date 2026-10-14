@@ -1,4 +1,0 @@
-interface:
-  display_name: "Plan Delivery"
-  short_description: "Carry approved issues through verification and review"
-  default_prompt: "Use $plan-delivery to complete the approved issue manifest through its agreed destination."

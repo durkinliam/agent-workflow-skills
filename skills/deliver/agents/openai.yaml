@@ -1,0 +1,4 @@
+interface:
+  display_name: "Deliver"
+  short_description: "Implement approved work and verify its outcome"
+  default_prompt: "Use $deliver to complete the approved work, verify its outcome, and obtain independent review."
