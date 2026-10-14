@@ -1,8 +1,9 @@
 # Agent Workflow Skills
 
-Four complementary skills for understanding, planning, delivering and reviewing
-software changes. They are written for Codex and use the portable Agent Skills
-`SKILL.md` format supported by the [Skills CLI](https://github.com/vercel-labs/skills).
+A personal workflow for collaborating with coding agents through a GUI or other
+harness. Four complementary skills describe how to understand, plan, deliver and
+review software changes, using the portable Agent Skills `SKILL.md` format
+supported by the [Skills CLI](https://github.com/vercel-labs/skills).
 
 ## Install
 
@@ -12,21 +13,58 @@ List the available skills:
 npx skills add durkinliam/agent-workflow-skills --list
 ```
 
-Install all four skills for Codex:
+Install all four skills:
 
 ```sh
-npx skills add durkinliam/agent-workflow-skills --skill '*' --agent codex
+npx skills add durkinliam/agent-workflow-skills --skill '*'
 ```
 
-Install one skill for Codex:
+Install one skill:
 
 ```sh
-npx skills add durkinliam/agent-workflow-skills --skill understand --agent codex
+npx skills add durkinliam/agent-workflow-skills --skill understand
 ```
 
 Installation defaults to the current project. Add `--global` to install across
-projects, or use `--agent` to select another supported agent. See the
+projects, or use `--agent` to specify the target agents. See the
 [CLI options](https://github.com/vercel-labs/skills#options) for details.
+
+For a Linux workstation using both Codex and Claude Code, install all four for
+both agents across projects:
+
+```sh
+npx skills add durkinliam/agent-workflow-skills \
+  --skill '*' --agent codex claude-code --global
+```
+
+With the default configuration, the CLI uses `~/.agents/skills` for Codex and
+`~/.claude/skills` for Claude Code. Install on the machine where the agents run.
+If a provider uses a custom configuration directory, check its skill discovery
+paths. See the [supported agents](https://github.com/vercel-labs/skills#supported-agents)
+and [T3 Code's Claude configuration](https://github.com/pingdotgg/t3code/blob/main/docs/user/providers-claude.md#skills).
+
+## Compatibility
+
+The workflow instructions do not require a particular model, provider or
+operating system. Skill discovery, invocation, tool access and permissions
+depend on the agent and harness. Delivery needs repository access and the tools
+required for the agreed checks; independent review needs a fresh context without
+the implementation conversation. If the harness cannot provide that context,
+use a separate session and pass only the review brief, fixed diff, relevant
+sources and verification evidence.
+
+Each skill's `agents/openai.yaml` supplies optional OpenAI UI metadata: a display
+name, short description and default prompt. The workflow instructions live in
+`SKILL.md`. See [OpenAI's metadata documentation](https://learn.chatgpt.com/docs/build-skills#optional-metadata)
+and [Claude Code's support for the Agent Skills standard](https://code.claude.com/docs/en/skills).
+
+In T3 Code, select the environment and provider, then use `$` in the composer
+to choose an installed skill. Check that all four appear for both Codex and
+Claude when switching providers. After installing or changing skills, use
+**Restart agent session** in the command palette. These instructions follow
+[T3 Code's documentation](https://github.com/pingdotgg/t3code/blob/main/docs/user/composer.md#commands-and-skills);
+they do not establish that a particular workstation or provider version has
+been tested with these skills.
 
 ## Skills
 
