@@ -1,32 +1,29 @@
 # Working records
 
-Use existing repository conventions when they serve the task. Otherwise keep
-durable coordination in ignored `.agent/plans/<name>/PLAN.md`. A small plan can
-remain in chat. Create `issues/` only when implementation context needs splitting.
+Follow repository conventions or use ignored `.agent/plans/<name>/PLAN.md`.
+Small plans may stay in chat; add `issues/` only when context requires splitting.
 
 ## Plan
 
 - Outcome and acceptance criteria.
-- Approach, affected modules, constraints and non-goals.
-- Decisions and source evidence; unresolved questions with their resolution trigger.
-- Verification: observation, inputs/environment, checks, limitations and permitted operations.
-- Approval and completion destination; explicit user limits, if any.
-- Current status, evidence and next action; issue order only when issues exist.
+- Approach, modules, constraints and non-goals.
+- Decisions, sources and unknowns with resolution triggers.
+- Verification: observations, inputs, environment, checks, limits and operations.
+- Approval, user limits and completion destination.
+- Status, evidence, next action and issue order if applicable.
 
 ## Issue, when needed
 
-- One observable outcome and link to the parent authority.
-- Relevant code, constraints and dependencies.
-- Verification and any issue-specific limits or unresolved blocker.
+- Observable outcome and parent authority link.
+- Code, constraints and dependencies.
+- Verification, specific limits and blockers.
 - Status, evidence and next action.
 
-Use simple states such as planned, in progress, verified and complete; record a
-blocker when one exists. Verified means the agreed checks support their claims;
-complete also requires the agreed independent review and destination. Keep an
-explicit approval reference separate from status.
+Use states such as planned, in progress, verified or complete; record blockers separately.
+Verified means checks support their claims; complete also requires independent
+review and the agreed destination. Keep approval separate from status.
 
-Replace stale working summaries rather than appending conversation transcripts.
-Keep evidence with its owner; attach substantial raw evidence only when useful.
-Do not create separate handoff, review or backlog files. Report adjacent ideas
-inline. Never commit the local plan package or delete earlier plans without
-permission. These records support continuation, not additional workflow stages.
+Replace stale summaries; omit transcripts. Keep evidence with its owner and attach
+raw evidence only when useful. Do not create separate handoff, review or backlog
+files; report adjacent ideas inline. Do not commit plans or delete earlier plans
+without permission. Records support continuation, not extra stages.

@@ -1,100 +1,78 @@
 ---
 name: deliver
-description: Implement an approved software plan or its context-sized issues, verify the agreed behaviour, and obtain independent review. Use for authorized delivery or resumption, not unresolved design.
+description: Implement or resume approved software work, verify its outcome, and obtain independent review. Use after intent and scope are settled.
 ---
 
 # Deliver
 
 Complete the authorized destination, keeping implementation, corrections and
-immediate verification together while the context remains useful.
+verification together while the context remains useful.
 
-## Start from the approved work
+## Confirm the contract
 
-Read the current plan or chat contract, relevant repository instructions, code
-and existing verification. Confirm the outcome, boundaries, unresolved blockers,
-permitted operations and evidence required for completion. Honour any explicit
-issue revisions or budgets. Resolve missing intent through Understand or changed
-decisions through Plan; do not guess or turn technical readiness into permission.
+Read the current plan or chat agreement, instructions, code and checks. Confirm
+outcome, boundaries, blockers, permitted operations and completion evidence;
+honour explicit revisions and budgets. Resolve unclear intent through Understand
+and changed decisions through Plan. Readiness does not grant permission.
 
-On resume, establish what actually changed and what was verified. Reuse valid
-evidence. Do not repeat an external action whose outcome is unknown; inspect its
-result through an authorized readback or report the gap.
+On resume, check what changed and was verified; reuse valid evidence. Do not repeat
+an external action whose outcome is unknown; inspect an authorized readback or
+report the gap.
 
 ## Implement and verify
 
-By default, write or update worthwhile tests against the agreed expected
-behaviour before the corresponding production change, and run them first.
-For a bug fix or new behaviour, establish where practical that the test exposes
-the relevant defect or missing behaviour; an unrelated setup failure is not
-that evidence. Behaviour-preserving changes may legitimately pass before and
-after. Add tests only for meaningful evidence or regression protection, using
-the existing owning suite where practical.
+Write and run worthwhile tests before the corresponding production change by
+default. For fixes or new behaviour, show where practical that they expose the
+defect or missing behaviour, not an unrelated setup failure. Behaviour-preserving
+changes may pass before and after. Prefer the owning suite; add tests only for
+meaningful evidence or regression protection.
 
-Justified exceptions include bounded exploration, a later-discovered edge case,
-or correction of an incorrect test. Explain why the test comes later and the
-independent basis for its expected result, such as an agreed requirement,
-documented contract or reference calculation. A later test may protect behaviour
-the code already handles. When a discovery requires a production correction,
-write the worthwhile test before that correction by default. Existing scope and
-approval boundaries still apply; an exception does not itself require approval.
+Exploration, later discoveries and incorrect tests can justify exceptions. Explain
+the timing and independent basis for expectations: an agreed requirement, contract
+or reference calculation. Later tests may protect existing behaviour; write them
+before any newly required production correction by default. Exceptions alone do
+not require approval or expand scope. Never derive expectations solely from current
+output or adjust assertions, fixtures, snapshots or tolerances just to pass.
 
-Do not derive expectations merely from the implementation's output, or change
-assertions, fixtures, snapshots or tolerances just to make tests pass. Justify
-test edits against the expected behaviour independently of the implementation.
+Implement the smallest clear change. Use plain, accurate names and cohesive
+responsibilities. Question a third copy of logic; share only when clearer. Avoid
+forwarding-only layers and comments that compensate for confusing code. Update
+affected documentation. Behaviour and code quality both count toward acceptance.
 
-Make the smallest clear implementation of the agreed behaviour. Use plain,
-accurate names and clear responsibilities. Question a third occurrence of the
-same logic; extract only when sharing improves clarity. Avoid forwarding-only
-layers and explanations that compensate for confusing code. Update documentation
-affected by the change. Code quality is part of acceptance alongside behaviour.
+Run agreed checks at the relevant boundary and inspect actual results. Use real
+inputs and interfaces where the claim requires them. State what tests, mocks,
+offline fixtures and CI leave unverified; obtain the required evidence.
 
-Run the agreed checks at the boundary they are meant to prove. Inspect actual
-results, not merely exit codes or green CI. Use real inputs and interfaces where
-the approved claim depends on them. Passing tests alone do not prove that the
-code works as expected. Identify what tests, mocks or offline fixtures leave
-unverified and gather the evidence needed for the agreed outcome. Do not weaken
-a check to make it pass.
+Fix in-scope failures. If the agreed check cannot prove the outcome, explain the
+gap and resolve verification through Plan; never weaken checks. For necessary
+scope changes, report the failure and smallest proposed expansion for a decision.
 
-Fix in-scope failures and code-quality problems. If implementation reveals that
-the approved observation cannot prove the outcome, make the evidence gap explicit
-and resolve the verification change through Plan. Do not silently substitute a
-weaker check. A newly discovered need cannot enlarge scope: explain the concrete
-failure and smallest proposed change when another decision is required.
+## Continue
 
-## Continue without unnecessary handoffs
+Finish and record each issue's implementation and verification before its next
+authorized dependent step. When context requires a fresh worker, pass source links,
+requirements, revision, checks, blockers and next action, not the exploratory
+transcript. Keep one repository writer unless disjoint surfaces were agreed.
 
-For a split plan, finish the current issue's implementation and verification,
-record concise evidence, then continue the next authorized dependent step.
-Use a fresh implementation context when context demand warrants it. Pass source
-links, approved requirements, current revision, checks, blockers and next action;
-exclude the exploratory transcript. Keep one repository writer active unless
-disjoint write surfaces were explicitly agreed.
-
-No new approval is needed for unchanged authorized work. Stop only for a real
-authority, evidence, access or decision gap, an invalidated boundary, or exhausted
-safe routes. Wait for changed or terminal state rather than repeatedly polling
-through model calls. Do not create a goal or extra tracker to continue execution.
+Continue unchanged authorized work without renewed approval. Stop only for missing
+authority, access, essential evidence or decisions, invalidated boundaries, or
+exhausted safe routes. Wait for changed or terminal state instead of repeated
+polling. Do not create a goal or extra tracker just to continue.
 
 ## Review and finish
 
-After verification, freeze the diff and send it to Review using GPT-6 Astra
-(`gpt-6-astra`) at Extra High effort (`xhigh`) in a fresh context without the
-implementation conversation. For a spawned reviewer, explicitly set
-`fork_turns="none"`, `model="gpt-6-astra"` and `reasoning_effort="xhigh"`.
-Use these settings for initial and correction reviews. If the required model,
-effort or fresh context is unavailable, report the limitation rather than
-silently substituting or treating self-review as independent.
+Freeze the verified diff and send it to Review in a fresh context. For initial and
+correction reviewers, explicitly set `fork_turns="none"`, `model="gpt-6-astra"`
+and `reasoning_effort="xhigh"` (GPT-6 Astra, Extra High). If unavailable, report the
+limitation; do not substitute settings or call self-review independent.
 
-Supply the approved outcome, criteria, constraints, repository sources and raw
-verification evidence, not a preferred verdict or explanation defending the
-implementation. For multiple issues, agree a coherent review boundary that also
-checks their combined behaviour.
+Supply the approved brief, constraints, fixed diff, sources and raw evidence,
+without implementation reasoning or a preferred verdict. For multiple issues,
+review a coherent boundary including combined behaviour.
 
-The reviewer reports findings; implementation fixes them. Recheck affected
-behaviour and have an independent reviewer assess corrections against the fixed
-reviewed version. Keep unchanged evidence only when it still applies.
+Fix findings, recheck affected behaviour and obtain independent correction review
+against the reviewed version. Retain unchanged evidence only while valid.
 
-Complete when the agreed verification, both review assessments and the authorized
-destination are satisfied. Report the actual outcome, checks, skipped work and
-remaining limits. Publication, merge and rollout require authority covering those
-actions; implementation approval alone does not grant it.
+Complete when verification, both review assessments and the authorized destination
+are satisfied. Report outcomes, checks, skipped work and limits. Publication,
+merge and rollout require authority beyond implementation alone.

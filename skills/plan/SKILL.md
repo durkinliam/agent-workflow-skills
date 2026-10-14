@@ -1,81 +1,64 @@
 ---
 name: plan
-description: Agree a bounded software change and meaningful verification before implementation. Split into issues when context demand warrants it. Use for planning, not production editing.
+description: Plan a bounded software change and meaningful verification before implementation. Split issues when context requires it; no production editing.
 ---
 
 # Plan
 
-Turn established intent and evidence into a plan the user can understand and
-approve. Resolve missing intent through Understand; do not fill gaps with guesses.
+Turn established intent and evidence into an approvable plan. Resolve unclear
+intent through Understand.
 
-## Agree the change and its proof
+## Define the change and verification
 
-State only what matters for the next implementation:
+State:
 
-- the observable outcome and acceptance criteria;
-- the smallest useful approach, affected code or modules, constraints and
-  non-goals;
-- material decisions, their evidence and unresolved points;
-- verification, necessary access or operations, and the completion destination.
+- Observable outcome and acceptance criteria.
+- Smallest useful approach, affected modules, constraints and non-goals.
+- Material decisions, evidence and unknowns.
+- Verification, required access or operations, and completion destination.
 
-Explain consequential alternatives with a concrete example and recommendation
-when supported. Ask the dependency-unlocking question first. Defer decisions
-needed only later with an explicit trigger; do not require a complete future
-architecture. For an unknown that implementation must resolve, agree the bounded
-experiment, observation and decision it enables before treating it as delivery.
+Explain consequential alternatives with a concrete example and supported
+recommendation. Ask the question that unlocks later decisions first. Defer later
+decisions with a resolution trigger. For implementation-dependent unknowns, agree
+a bounded experiment, distinguishing observation and resulting decision.
 
-Agree verification during planning, not after the code is written. For each
-claim, identify an observation that could distinguish the intended behaviour
-from a plausible failure. Establish the necessary environment, real inputs and
-interfaces, existing checks, and evidence limits. Specify test changes only when
-they provide meaningful evidence or regression protection. Prefer an existing
-owning suite; do not add tests for their own sake or duplicate coverage without
-a distinct purpose. Derive expected results from the agreed behaviour, and plan
-worthwhile tests before the corresponding production changes by default. Explain
-known exceptions; discoveries during delivery may justify others.
+For each claim, identify evidence that distinguishes success from plausible
+failure: environment, real inputs, interfaces and checks. State what tests, mocks
+and CI leave unverified and how to observe the agreed outcome. A simulated
+contract does not prove the real integration.
 
-Passing tests do not by themselves establish that the code works as expected.
-A mocked boundary supports the simulated contract, not a claim that the real
-integration works. Identify what tests and green CI leave unverified and how the
-agreed outcome will be observed within the authorized scope.
+Plan tests only for meaningful evidence or regression protection. Prefer the
+owning suite; avoid duplicate coverage without a distinct purpose. Ground expected
+results in agreed behaviour. Plan worthwhile tests before production changes by
+default; explain known exceptions and allow justified discoveries during delivery.
 
-If the verification approach is unknown, investigate or agree an experiment.
-Missing essential evidence prevents claiming completion. Preserve deliberately
-offline or otherwise limited outcomes; do not add unrelated live checks.
+Investigate unknown verification or agree an experiment. Missing essential
+evidence prevents completion. Preserve explicitly offline or limited outcomes.
 
-## Size work for the implementation context
+## Size the work
 
-Use one plan when one context can comfortably hold the relevant requirements,
-code, implementation, verification and likely debugging. Complexity or material
-risk alone does not require a separate issue.
+Keep one plan when requirements, code, checks and likely debugging fit comfortably
+in one context. Otherwise split by independently verifiable behaviour, ordering
+dependencies and leaving room for corrections. Risk alone does not require issues;
+do not invent token thresholds or precise usage forecasts.
 
-Create issues when that working context would become crowded. Leave meaningful
-headroom for failures and corrections; do not invent a universal token threshold
-or promise precise future token usage. Split by independently verifiable
-behaviour, with dependencies in order. Each issue carries the approved outcome,
-relevant constraints, source links and verification needed to execute without
-replaying the planning conversation. Reassess the split if new evidence makes
-the expected context substantially larger.
-
-Use the short [record format](references/records.md) when durable coordination
-is useful. A small plan may stay in chat. Issues are context boundaries, not a
-reason to duplicate the full plan or create technical-layer tickets.
+Each issue carries its outcome, relevant constraints, source links and checks
+without duplicating the plan or replaying the conversation. Avoid splits by
+technical layer. Reassess if new evidence substantially increases context needs.
+Use the [record format](references/records.md) for useful durable coordination;
+small plans may stay in chat.
 
 ## Establish authority once
 
-Obtain approval of the concrete behaviour, boundaries, verification and destination
-before production editing, unless the user's existing instruction already covers
-them. Preserve explicit limits on files, tests, spending or operations. Otherwise
-allow supporting changes within the agreed modules for the approved behaviour
-and code-quality standards; do not demand arbitrary file or test counts.
+Before production edits, obtain approval for behaviour, boundaries, verification
+and destination unless existing instructions cover them. Honour explicit file,
+test, spending, operation and issue-revision limits. Otherwise allow supporting
+changes within agreed modules; do not impose arbitrary file or test counts.
 
-Readiness means the next implementation has enough evidence and a usable check;
-it is distinct from permission. Splitting approved work into issues carries only
-the parent authority that actually covers their behaviour and boundaries.
-If approval names exact issue revisions, honour that restriction. New behaviour,
-changed contracts, wider access or a changed completion standard needs a new
-decision. Scope findings cannot authorize themselves.
+Readiness is not permission. Issues inherit only applicable parent authority.
+New behaviour, changed contracts, wider access or a changed completion standard
+requires a user decision; findings cannot authorize expansion.
 
-Continue authorized implementation with Deliver. A planning-only request ends
-with the reviewable plan. Make the established outcome, next action and remaining
-user decision visible in plain language; do not require the user to route skills.
+Continue authorized implementation with Deliver. For planning-only requests,
+return the reviewable plan. State the next action and remaining user decision
+without making the user route skills.
