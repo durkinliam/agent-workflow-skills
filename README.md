@@ -119,6 +119,20 @@ them. Tests are useful evidence, not an automatic deliverable; mocks and green C
 establish only what they exercise. Report missing evidence and skipped checks,
 and never weaken checks to claim success.
 
+Plan tests only for meaningful evidence or regression protection, preferably in
+the owning suite. Write and run worthwhile tests before the corresponding
+production change by default. For fixes or new behaviour, show where practical
+that they expose the defect or missing behaviour, rather than an unrelated setup
+failure. Behaviour-preserving changes may pass before and after. Ground expected
+results in agreed requirements, contracts or reference calculations, never solely
+in current implementation output.
+
+Exploration, later discoveries and incorrect tests can justify timing exceptions.
+Explain the timing and independent basis for expectations. Later tests may protect
+existing behaviour; write them before any newly required production correction
+by default. Exceptions alone do not require approval or expand scope. Never
+adjust assertions, fixtures, snapshots or tolerances merely to make tests pass.
+
 After verification, freeze the diff for Review using the model and effort
 specified under [Compatibility](#compatibility). For both initial and correction
 reviews, use a fresh context without the implementation conversation. For a
@@ -128,7 +142,10 @@ reviewing. If the requirements cannot be met, report the limitation; do not
 silently substitute another model or effort, or treat self-review as independent.
 
 Supply the approved requirements, fixed diff, relevant sources and raw
-verification evidence. Review assesses behaviour and code quality separately;
+verification evidence. Review uses execution evidence to assess test-first
+practice; a final diff cannot establish sequence. It evaluates justified timing
+exceptions and changes to test expectations without rejecting useful later tests
+solely for their timing. Review assesses behaviour and code quality separately;
 both must pass. Quality findings can require correction without a behavioural
 failure. The reviewer reports findings without editing; the delivery owner makes
 corrections, rechecks affected behaviour and obtains independent review of the
