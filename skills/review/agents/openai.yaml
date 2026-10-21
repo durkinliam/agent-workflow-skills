@@ -1,4 +1,0 @@
-interface:
-  display_name: "Review"
-  short_description: "Independently assess behaviour and code quality"
-  default_prompt: "Use $review in a fresh context to assess the fixed diff against the approved outcome and code-quality standards."
